@@ -6,23 +6,34 @@
     <title>DISCÍPULOS // Official Site</title>
     <link rel="icon" type="image/jpeg" href="https://i.imgur.com/0lwwt3N.jpeg">
     <style>
-        /* --- ESTÉTICA MODERNA 2026 --- */
+        /* --- ESTÉTICA MODERNA COM PARALLAX --- */
         :root {
-            --bg-color: #0a0a0a;
-            --surface-color: #161616;
             --primary-color: #ff5500;
             --text-color: #f0f0f0;
-            --text-muted: #999999;
-            --border-color: rgba(255, 255, 255, 0.08);
+            --text-muted: #aaaaaa;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --glass-bg: rgba(15, 15, 15, 0.65); /* Fundo transparente */
         }
 
         body {
-            background-color: var(--bg-color);
             color: var(--text-color);
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+        }
+
+        /* BACKGROUND PARALLAX */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Imagem com um degradê escuro por cima para o texto dar leitura */
+            background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images3.alphacoders.com/919/thumb-1920-919075.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            z-index: -1;
         }
 
         .container {
@@ -38,212 +49,116 @@
         a { color: var(--primary-color); text-decoration: none; transition: color 0.2s ease; }
         a:hover { color: #fff; }
 
-        /* --- BARRA LATERAL (FIXA NA TELA) --- */
+        /* --- ANIMAÇÕES DE SCROLL (CSS) --- */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform;
+        }
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- BARRA LATERAL (GLASSMORPHISM) --- */
         .sidebar {
             position: sticky;
             top: 40px;
-            background: var(--surface-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px); /* Efeito de vidro embaçado */
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 24px;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
 
-        .profile-pic {
-            width: 100%;
-            border-radius: 12px;
-            overflow: hidden;
-            margin-bottom: 20px;
-        }
-        .profile-pic img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-        .profile-pic:hover img {
-            transform: scale(1.05);
-        }
+        .profile-pic { width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 20px; }
+        .profile-pic img { width: 100%; height: auto; display: block; transition: transform 0.4s ease; }
+        .profile-pic:hover img { transform: scale(1.05); }
 
-        .brand-title {
-            text-align: center;
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 2px;
-            margin: 0 0 5px 0;
-            color: #fff;
-        }
-
-        .brand-subtitle {
-            text-align: center;
-            font-size: 12px;
-            color: var(--text-muted);
-            margin-bottom: 24px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+        .brand-title { text-align: center; font-size: 24px; font-weight: 800; letter-spacing: 2px; margin: 0 0 5px 0; color: #fff; }
+        .brand-subtitle { text-align: center; font-size: 12px; color: var(--text-muted); margin-bottom: 24px; text-transform: uppercase; letter-spacing: 1px; }
 
         /* Menu de Navegação */
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-bottom: 24px;
-        }
+        .nav-menu { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
         .nav-menu a {
-            display: block;
-            padding: 12px 16px;
-            border-radius: 10px;
-            color: var(--text-color);
-            background: rgba(255,255,255,0.03);
-            font-weight: 500;
-            font-size: 14px;
-            transition: all 0.2s ease;
+            display: block; padding: 12px 16px; border-radius: 10px; color: var(--text-color);
+            background: rgba(255,255,255,0.03); font-weight: 500; font-size: 14px; transition: all 0.2s ease;
         }
         .nav-menu a:hover, .nav-menu a.ativo {
-            background: var(--primary-color);
-            color: #fff;
-            transform: translateX(4px);
+            background: var(--primary-color); color: #fff; transform: translateX(6px); box-shadow: 0 4px 15px rgba(255, 85, 0, 0.3);
         }
 
-        /* Botões Especiais */
         .btn-merch {
-            display: block;
-            text-align: center;
-            background: transparent;
-            color: #fff;
-            border: 1px solid var(--text-muted);
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
+            display: block; text-align: center; background: transparent; color: #fff; border: 1px solid var(--text-muted);
+            padding: 12px; border-radius: 10px; font-weight: bold; font-size: 12px; text-transform: uppercase;
+            letter-spacing: 1px; margin-bottom: 20px; transition: all 0.2s ease;
         }
-        .btn-merch:hover {
-            background: #fff;
-            color: #000;
-            border-color: #fff;
-        }
+        .btn-merch:hover { background: #fff; color: #000; border-color: #fff; }
 
-        /* Listas na Sidebar */
         .sidebar-section { margin-bottom: 20px; }
-        .sidebar-section h4 { 
-            font-size: 11px; 
-            color: var(--text-muted); 
-            text-transform: uppercase; 
-            letter-spacing: 1px; 
-            margin: 0 0 10px 0; 
-            border-bottom: 1px solid var(--border-color);
-            padding-bottom: 5px;
-        }
+        .sidebar-section h4 { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin: 0 0 10px 0; border-bottom: 1px solid var(--border-color); padding-bottom: 5px; }
         .sidebar-section ul { list-style: none; padding: 0; margin: 0; font-size: 13px; }
         .sidebar-section ul li { margin-bottom: 6px; color: #ccc; }
         .sidebar-section ul li b { color: #fff; font-weight: 600; }
 
         /* --- CONTEÚDO PRINCIPAL --- */
         .header-main { margin-bottom: 40px; }
-        .header-main h2 { font-size: 32px; margin: 0 0 10px 0; font-weight: 800; letter-spacing: -1px; }
+        .header-main h2 { font-size: 38px; margin: 0 0 10px 0; font-weight: 800; letter-spacing: -1px; text-shadow: 0 2px 10px rgba(0,0,0,0.5); }
         .header-main p { color: var(--text-muted); margin: 0; font-size: 16px; }
 
         /* Estilo dos Álbuns */
         .album-card {
-            background: var(--surface-color);
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 40px;
             border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
 
-        .album-header-info {
-            display: flex;
-            gap: 24px;
-            margin-bottom: 30px;
-            align-items: center;
-        }
-
+        .album-header-info { display: flex; gap: 24px; margin-bottom: 30px; align-items: flex-start; }
         .album-cover {
-            width: 180px;
-            height: 180px;
-            border-radius: 12px;
-            object-fit: cover;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            width: 200px; height: 200px; border-radius: 12px; object-fit: cover;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5); transition: transform 0.3s ease;
         }
+        .album-cover:hover { transform: translateY(-5px); }
 
-        .album-text h3 { margin: 0 0 10px 0; font-size: 24px; letter-spacing: -0.5px; }
-        .album-text p { color: var(--text-muted); font-size: 14px; margin: 0 0 15px 0; max-width: 400px; }
+        .album-text h3 { margin: 0 0 10px 0; font-size: 28px; letter-spacing: -0.5px; }
+        .album-text p { color: var(--text-muted); font-size: 14px; margin: 0 0 20px 0; max-width: 450px; line-height: 1.5; }
         
         .btn-spotify {
-            display: inline-block;
-            background: #1DB954;
-            color: #000;
-            padding: 10px 20px;
-            border-radius: 20px;
-            font-weight: bold;
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: transform 0.2s ease, filter 0.2s ease;
+            display: inline-block; background: #1DB954; color: #000; padding: 10px 24px;
+            border-radius: 30px; font-weight: bold; font-size: 12px; text-transform: uppercase;
+            letter-spacing: 1px; transition: transform 0.2s ease, filter 0.2s ease; box-shadow: 0 4px 15px rgba(29, 185, 84, 0.4);
         }
-        .btn-spotify:hover { transform: scale(1.05); filter: brightness(1.1); color: #000; }
+        .btn-spotify:hover { transform: translateY(-2px); filter: brightness(1.1); color: #000; }
 
-        /* Acordeão de Letras Moderno */
-        .tracklist { margin-top: 20px; }
-        details {
-            background: rgba(255,255,255,0.02);
-            border: 1px solid var(--border-color);
+        /* Tracklist Limpa */
+        .tracklist-clean {
+            background: rgba(0,0,0,0.3);
             border-radius: 12px;
-            margin-bottom: 10px;
-            overflow: hidden;
-            transition: background 0.2s ease;
+            padding: 20px 25px;
+            border: 1px solid var(--border-color);
         }
-        details:hover { background: rgba(255,255,255,0.05); }
-        
-        summary {
-            padding: 16px 20px;
-            cursor: pointer;
-            font-weight: 500;
-            font-size: 15px;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        summary::-webkit-details-marker { display: none; }
-        summary::after {
-            content: "+";
-            color: var(--text-muted);
-            font-size: 20px;
-            transition: transform 0.3s ease;
-        }
-        details[open] summary::after { content: "−"; color: var(--primary-color); }
-        details[open] summary { border-bottom: 1px solid var(--border-color); color: var(--primary-color); }
-        
-        .lyrics-content {
-            padding: 20px;
-            font-size: 14px;
-            white-space: pre-wrap;
-            color: var(--text-muted);
-            line-height: 1.8;
-            background: #0d0d0d;
-        }
+        .tracklist-clean h4 { margin: 0 0 15px 0; font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--primary-color); }
+        .tracklist-clean ol { margin: 0; padding-left: 20px; font-size: 14px; color: #ddd; }
+        .tracklist-clean ol li { margin-bottom: 8px; border-bottom: 1px dashed rgba(255,255,255,0.05); padding-bottom: 5px; }
+        .tracklist-clean ol li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .tracklist-clean ol li span { float: right; color: var(--text-muted); font-size: 12px; } /* Para tempo da música, se quiser por depois */
 
-        footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
-            color: var(--text-muted);
-            font-size: 12px;
-        }
+        footer { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 12px; }
 
         /* Responsividade */
         @media (max-width: 850px) {
             .container { grid-template-columns: 1fr; padding: 20px; }
             .sidebar { position: relative; top: 0; margin-bottom: 30px; }
-            .album-header-info { flex-direction: column; text-align: center; }
-            .album-text p { margin: 0 auto 15px auto; }
+            .album-header-info { flex-direction: column; text-align: center; align-items: center; }
+            .album-text p { margin: 0 auto 20px auto; }
         }
     </style>
 </head>
@@ -251,7 +166,7 @@
 
 <div class="container">
     
-    <aside class="sidebar">
+    <aside class="sidebar fade-in">
         
         <div class="profile-pic">
             <img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos">
@@ -298,1857 +213,103 @@
 
     <main class="content">
         
-        <div class="header-main">
-            <h2>Discografia & Letras</h2>
-            <p>Explore as letras, projetos e lançamentos oficiais.</p>
+        <div class="header-main fade-in">
+            <h2>Discografia</h2>
+            <p>Explore os lançamentos oficiais, álbuns e projetos.</p>
         </div>
 
-        <section class="album-card">
+        <section class="album-card fade-in">
             
             <div class="album-header-info">
                 <img src="https://i.imgur.com/hirNm4K.jpeg" alt="Capa Receita de Preparo da Nova Geração" class="album-cover">
                 <div class="album-text">
                     <span style="display: inline-block; background: var(--primary-color); color: #fff; font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase;">Lançamento (2026)</span>
                     <h3>Receita de Preparo da Nova Geração</h3>
-                    <p>O projeto explora a experiência da Geração Z, impactos da pandemia, isolamento e a pressão digital.</p>
+                    <p>O projeto explora a experiência da Geração Z, os impactos da pandemia, o isolamento social e a pressão de crescer na era digital.</p>
                     <a href="https://open.spotify.com/intl-pt/album/5bAVtGW4hYrVpQ9ALYhPza?si=_Zym-HXrTd2xgfgn2jYGZQ" target="_blank" class="btn-spotify">Ouça no Spotify</a>
                 </div>
             </div>
 
-            <div class="tracklist">
-                <details>
-                    <summary>01. A Calmaria Antes da Tempestade</summary>
-                    <div class="lyrics-content">
-[Verso 1 - Henriz]
-Eu sinto saudade da vida antiga
-Quando eu não tinha nenhuma preocupação
-Eu sinto saudade da minha infância
-Tudo pra mim era só ilusão
-Mas agora eu cresci
-Não dá pra voltar
-Até que eu tentei aproveitar
-Eu ainda tô novo
-Mas do mesmo jeito as inseguranças tentam dominar
-
-[Verso 2 - Henriz]
-Pra ser sincero eu queria voltar
-Pra quando minha vida era só jogar
-Ou brincar de pega pega com gente na escola
-E talvez jogar bola
-Pra ser sincero
-Eu nunca gostei disso
-Pra ser sincero
-Eu era diferente
-O meu passatempo era gravar vídeo
-Sempre quis me aparecer na internet
-
-[Verso 3 - Henriz]
-Mas agora minha vida mudou
-A minha adolescência chegou
-O que antes parecia um sonho
-Agora isso um pesadelo se tornou
-
-[Ponte - Henriz]
-Eu sinto muita falta do meu vô
-Perdei ele em 2019
-11 dias antes do meu aniversário
-Essa porra realmente mudou minha cabeça
-
-[Verso 4 - Henriz]
-Agora eu penso
-Aproveita, porque qualquer coisa pode acontecer
-Um ente querido seu pode morrer
-
-[Verso 5 - Henriz]
-2021
-A minha cachorra veio a falecer
-Uma semana antes do meu aniversário
-Mas que porra é essa
-Toda vez acontece uma tragédia
-Parece que é sempre comigo
-
-[Outro - Henriz]
-Será que eu sou amaldiçoado?
-Eu sei mto bem que sou abençoado
-Se acontecer mais alguma coisa
-Eu juro por tudo que-
-                    </div>
-                </details>
-
-                <details>
-                    <summary>02. A Tempestade</summary>
-                    <div class="lyrics-content">
-[Verso 1 - Henriz]
-Noites em claro na pandemia
-Dançando no meu quarto vendo euphoria
-Scrollando o cell, a dopamina
-Dopando meu cérebro é muito bom
-
-[Verso 2 - Henriz]
-Questiono se o mundo vai voltar ao normal
-Eu quero criar um vídeo viral
-Quero me distrair doq tá acontecendo
-Tanta gente morrendo
-E eu fingindo que isso não tá me afetando me sufocando
-
-[Refrão - Os Dois]
-Eu só quero que isso acabe
-
-[Verso 3 - Henriz]
-Adrenalina de açúcar
-Esse é meu melhor domingo
-Não to me sentindo bem como deveria
-Mas tudo bem, alguma hora tudo volta ao normal
-E nada vai mudar
-Pra que prestar atenção na aula online
-Se o meu futuro vai continuar igual
-
-[Refrão - Os Dois]
-Eu só quero que isso acabe
-
-[Verso 4 - Henriz]
-Preso na rotina, cada dia é igual
-Jogo fora meus horários, minha mente é um vendaval
-Ligo o PC, mais uma call no Zoom
-E ninguém fala nada, só silêncio no meu quarto
-
-[Verso 5 - Henriz]
-Quantos sonhos ficaram em pausa na quarentena?
-Experiências de vida que foram perdidas?
-Conteúdo infinito pra mente afogar
-Mas no fundo eu não aguento mais me isolar
-
-[Ponte - Henriz]
-Me esforço pra fingir que tá tudo tranquilo
-Lá fora há tanto caos, há tanto perigo
-Se essa tempestade não passar
-Será que algum de nós vai saber recomeçar?
-
-[Verso 6 - Gebriel]
-Sinto saudade dos amigos
-Eu os tive que deixar
-A conexão virtual é tão ruim
-Eu menti, fui eu quem parei de falar
-
-[Verso 7 - Gebriel]
-As ruas vazias
-Pareciam um sonho
-Não dá pra acreditar
-Em nossa hora de brilhar
-O mundo escureceu
-A gente se escondeu
-Noção de tempo perdeu
-Tempo perdeu
-A família perdeu
-A gente se perdeu
-
-[Verso 8 - Gebriel]
-Timidez só foi piorando
-Isolamento foi me matando
-Sedentário, mal hábito
-O corpo falhando
-A voz falhando
-Desaprendi a socializar
-
-[Verso 9 - Gebriel]
-Mesmo saudável me sinto doente
-Minha preguiça acabou com minha mente
-Preso num loop é o que a gente sente
-Deprimido, não queria ver gente
-Um lixo, eu me sentia
-Até esquecia
-Na tremenda monotonia
-Eu era humano e podia voar
-
-[Refrão - Os Dois]
-Eu só quero que isso acabe
-
-[Verso 10 - Gebriel]
-Timidez só foi piorando
-Isolamento foi me matando
-Sedentário, mal hábito
-O corpo falhando
-A voz falhando
-Desaprendi a socializar
-
-[Verso 11 - Gebriel]
-Mesmo saudável me sinto doente
-Minha preguiça acabou com minha mente
-Preso num loop é o que a gente sente
-
-[Refrão - Os Dois]
-Eu só quero que isso acabe
-
-[Verso 12 - Gebriel]
-A COVID levou meu avô
-2 anos da minha vida a COVID levou
-Uma nação inteira ela parou
-Tanta mentira, confiança abalou
-Antissociais essa merda criou
-Nos polarizou
-Uma geração inteira dessensibilizou
-Ainda é cedo, mas numa década vamos ver a cicatriz que isso deixou
-
-[Outro - Os Dois]
-Eu só quero que isso acabe
-                    </div>
-                </details>
-
-                <details>
-                    <summary>03. Teseu</summary>
-                    <div class="lyrics-content">
-[Verso: Gebriel]
-Becos, vielas estreitas
-As sombras engolem quem entra
-Só o faço por obrigação
-Porque o não jamais foi opção
-
-[Verso: Gebriel]
-Quero acreditar numa salvação
-Paralisado não tomo ação
-Como eu devia? Se eu não enxergo
-Nem mesmo minha mão
-
-[Verso: Gebriel]
-Meu tempo é curto
-É um pecado perde-lo
-Mas já fazem anos que eu ando pecando
-Sem nunca mudar
-
-[Verso: Gebriel]
-São tantos caminhos
-Tantas opções pra se explorar
-Vai que um dia eu consigo escapar
-Temo o dia que minha hora chegar
-Me aflige pensar em errar
-Investir minha vida em algo e ter que voltar
-
-[Verso: Henriz]
-Pra mim me esforçar é uma perda de tempo (ha)
-Progredir e ter tormento (ha)
-Só que se eu não me esforçar
-Não estudar
-No futuro, isso que vai me prejudicar
-
-[Verso: Henriz]
-Isso cria um paradoxo
-Eu sei que o futuro é nosso
-Eu vou tentar trabalhar tanto
-Pra no final entrar em prantos
-Por não chegar em nenhum canto
-
-[Verso: Henriz]
-Eu só queria achar um trampo
-Que não me desgastasse tanto
-Que não me afastasse tanto
-Daqueles que eu mais amo
-
-[Ponte: Henriz]
-Só que não tem oportunidade
-Eu não vou ser feliz de verdade
-Eu queria ser TESEU
-O labirinto ele venceu
-Mas sei que isso jamais vai ser eu
-
-[Verso: Henriz]
-Amarrado nas correntes da dúvida
-Sabotado pela minha cabeça
-Eu vejo minha vida correr
-Cheio de medo de nunca vencer, eu nunca venci
-
-[Verso: Henriz]
-Eu vi tantas passagens e corredores
-Suas dificuldades e suas dores
-Passei por todos e não entrei em nenhum
-Eu não quero ter uma vida comum
-                    </div>
-                </details>
-
-                <details>
-                    <summary>04. Potencial</summary>
-                    <div class="lyrics-content">
-[Intro - Juliana Oliver]
-Parabéns, a todos vocês
-É, vocês são muito talentosos, etc
-E, cara, até agora eu ainda estou sem palavras
-É, acho que todas as músicas estão muito bem executadas
-Todos os beats estão muito bons, as letras estão extremamente boas
-E, acho que vocês têm muito potencial pra crescer
-E conseguir alcançar o que vocês realmente querem, tá ligado
-
-[Verso 1 - Henriz]
-Acordar, estudar, dormir
-Não tenho tempo pra me divertir
-Quando isso vai acabar
-Quando eu vou poder descansar?
-
-[Verso 2 - Henriz]
-Tudo isso toma meu tempo
-Eu não consigo acreditar
-Que metade da minha vida
-Com isso eu vou gastar
-
-[Verso 3 - Henriz]
-Eu tenho potencial
-Diferente de geral que é igual
-Mas não posso aproveitar
-Nos estudos preciso focar
-
-[Verso 4 - Henriz]
-Eu quero viver de arte
-Mas se não der faz parte
-De acordo com familiares
-Dinheiro é prioridade
-
-[Interlúdio - Henriz]
-(Eu quero muito viver de cinema, eu acho que é um dos meus maiores sonhos... Não é muito bom no Brasil, mas, eu acho que eu tenho potencial)
-
-[Interlúdio - Henriz]
-Ô Bru Sant, liga o beat
-
-[Refrão - Henriz]
-Tenho potencial
-Eu sou essencial
-Tenho potencial
-Eu sou essencial
-
-[Verso 5 - Gebriel]
-Tenho fé que um dia o meu esforço
-Vai fazer eu chegar lá
-Que um dia meu esforço vai fazer tudo mudar
-Não importa quantas portas na minha frente vão fechar
-Encontrei uma janela e por ela vou entrar
-Encontrei uma janela e por ela vou entrar
-Encontrei uma janela e por ela vou entrar
-Encontrei uma janela e por ela vou entrar
-
-[Verso 6 - Gebriel]
-De que importa parar
-E a ampulheta esvaziar
-Como você vai chegar no pódio
-Se até hoje não te vi andar
-Se parado ficar
-Pra afundar não vai tardar
-(E aí, como vai ficar?)
-
-[Refrão - Os Dois]
-Tenho potencial
-Eu sou essencial
-Tenho potencial
-Eu sou essencial
-
-[Verso 7 - Henriz]
-Eu não quero fazer o que mandam não
-Sei que se eu seguir meus sonhos, vou ter um ganha pão
-Eu não quero fazer o que mandam não
-Sei que se eu seguir meus sonhos, vou ter um ganha pão
-
-[Verso 8 - Henriz]
-Eu quero viver disso
-Eu vou viver disso
-Ganhar muito dinheiro nisso
-Vou seguir meus sonhos nisso
-
-[Outro - Mãe Do Henriz]
-Filho, como que estão indo as músicas? Estão bem?
-E aí, me fala, quando você vem pra Venceslau?
-                    </div>
-                </details>
-
-                <details>
-                    <summary>05. Venceslau</summary>
-                    <div class="lyrics-content">
-[Intro - Henriz]
-Depois de 5 anos eu voltei pra cidade onde eu passei boa parte da minha infância
-Foi estranho, tava tudo mudado, eu fiquei 3 anos sem ver minha mãe, e eu também não via meus amigos desde a pandemia
-
-[Verso 1 - Henriz]
-Quando eu tinha 6 anos a minha mãe se mudou
-Levou eu e minha irmã, e confuso, me deixou
-No aniversário do meu pai, de Campo Grande nós zarpou
-O grande Mato Grosso do Sul a gente abandonou
-
-[Verso 2 - Henriz]
-Nós fomos morar com a minha avó
-No meio de duas casas
-Uma tia, outra tia, tudo junto nós morava
-Ali que me aproximei do meu primo Daniel
-Um japinha bem baixinho, meu amigo mais fiel
-
-[Verso 3 - Henriz]
-Eu entrei em um colégio com o nome da capital
-Eu e mais 5 pessoas no Ensino Fundamental
-Tinha uma professora esquisita que batia em aluno
-
-[Verso 4 - Henriz]
-Um dia ela me insultou
-Aquilo sobrecarregou
-Era um moleque esquisito
-Na frente de todos me humilhou
-
-[Verso 5 - Henriz]
-Fazia vídeo pra internet
-Como forma de me expressar
-Depois de tanto sofrimento
-Eu botei na minha cabeça
-Que pra Campo Grande iria voltar
-
-[Verso 6 - Henriz]
-Eu pedi tanto, ninguém queria deixar
-Até a pandemia chegar
-2020, aula online, uma oportunidade de viajar
-
-[Verso 7 - Henriz]
-Eu iria pra Campo Grande
-Pra ficar com o meu pai
-E sempre vendo a aula online
-Mas na verdade não via
-
-[Verso 8 - Henriz]
-Eu logava e ia deitar
-Pra mexer no celular
-Na prova, ia colar
-E com meus amigos jogar
-
-[Verso 9 - Henriz]
-Melhor época da minha vida
-E eu não estou nem zoando
-O que era pra ser 1 mês
-Acabou virando 1 ano
-
-[Verso 10 - Henriz]
-Dezembro, 2021
-Minha mãe me perguntou
-"Você quer ficar aí"
-E eu fui e respondi que sim
-
-[Verso 11 - Henriz]
-Eu não estou desmerecendo Presidente Venceslau
-Mas foi tanta coisa ruim, que acabou ficando mal
-Isso não tem nada a ver com minha mãe
-Foram só as circunstâncias, Campo Grande é melhor
-Campo Grande é capital, é a cidade morena
-Eu nunca vi nada igual
-
-[Verso 12 - Henriz]
-Mas agora eu fui e visitei Presidente Venceslau
-Tava tudo diferente, minha época passou
-Todo mundo se conhece, bem diferente daqui
-Mas você sabe, é o interior
-
-[Outro - Henriz]
-Pra quem mora em capital, aquilo é um horror
-Alguns até que acham bom, achei meio entediante
-Mas fiquei com minha mãe e minha irmã, que deslumbrante!
-                    </div>
-                </details>
-
-                <details>
-                    <summary>06. Família</summary>
-                    <div class="lyrics-content">
-[Verso 1 - Henriz]
-Você sempre me chamou
-Eu nunca pude ir pra lá
-Quase ninguém permitiu
-Mas meu sonho eu consegui realizar
-
-[Verso 2 - Henriz]
-Família é o que sempre segura
-É o seu porto seguro, isso eu posso concordar
-Muita gente que te ama, vai sempre te apoiar
-Quer dizer, às vezes não, às vezes vão te julgar
-
-[Verso 3 - Henriz]
-Julgar o seu sonho, e talvez te magoar
-Falar que você vai ficar pobre, pelo o que você vai cursar
-Eu quero cursar cinema "mas não é bom no Brasil!"
-Então eu quero fazer música! "você não sabe cantar"
-
-[Verso 4 - Henriz]
-Mas dinheiro não é tudo! "quando você crescer, isso você não vai pensar"
-Então eu vou ter uma vida triste? "eu não quero discutir agora, você tá com cabeça de adolescente rebelde"
-Mas eu tenho maturidade o suficiente!
-Isso é bem engraçado, depois disso tudo eles sempre falam que vão te apoiar
-O que eles disseram me deixou muito triste
-Eu acho que o que eu precisava era só desabafar
-
-[Refrão - Henriz]
-Você sempre me chamou
-Eu nunca pude ir pra lá
-Quase ninguém permitiu
-Mas meu sonho eu consegui realizar
-
-[Verso 5 - Henriz]
-Eu não quero magoar nenhum de vocês com essa música
-Como eu disse umas faixas passadas
-Eu tenho potencial
-Vocês têm que acreditar em mim
-
-[Verso 6 - Henriz]
-Eu amo tanto vocês
-Sou muito grato por tudo que eu tenho
-Mãe, madrinha
-Pai, padrinho
-Primos, primas
-Dan, Luis, João
-Vocês me criaram
-Considero vocês como meus irmãos
-
-[Verso 7 - Henriz]
-Dan, naquela noite em 2017
-Em que a gente viu A Babá
-Não tivesse acontecido, eu ainda amaria muito filme de terror?
-João Victor, se você não me mostrasse suas músicas
-Eu nem sei se eu estaria aqui cantando hip-hop
-
-[Verso 8 - Henriz]
-Luis Felipe, se você não contasse suas piadas
-Desse seus conselhos
-Eu ainda seria a mesma pessoa?
-O mesmo Henrico?
-O mesmo Henriz?
-O mesmo discípulo
-
-[Ponte - Henriz]
-Porra, eu formei uma banda
-Por influência de vocês
-Involuntariamente vocês me ajudaram
-
-[Verso 9 - Henriz]
-Mãe, eu te amo, te aprecio muito do jeito que você cuidou de mim
-Isadora, a gente briga muito mas eu sei que você quer meu melhor
-Pai, você é meu maior exemplo, você sabe o milagre que aconteceu com você, e só mais uma coisa, é que
-
-[Outro - Henriz]
-Você sempre me chamou
-Eu nunca pude ir pra lá
-Quase ninguém permitiu
-Mas meu sonho eu consegui realizar
-                    </div>
-                </details>
-
-                <details>
-                    <summary>07. Adaptar</summary>
-                    <div class="lyrics-content">
-[Verso 1 - Henriz]
-Depois de 2 anos preso em casa
-Eu estou de volta na escola
-Não sei como socializar
-Essa máscara não ajuda
-
-[Verso 2 - Henriz]
-Não consigo respirar
-Essa gente é estranha
-Só assistem TikTok de dança
-E eu jogo Minecraft
-
-[Verso 3 - Henriz]
-Fico o dia inteiro em casa
-Eu só fico no meu mundo
-O que eles vão pensar de mim
-Eu sei que isso não vai importar no fim
-
-[Verso 4 - Henriz]
-Mas eu só tenho 12 anos
-Não tenho habilidade
-Eu acabei de mudar de cidade
-Eu não sei por onde andar
-Eu não sei me localizar
-
-[Verso 5 - Henriz]
-Mas eu acho que no fundo o que importa é tentar
-Essa coordenadora é chata
-Ela tem algo contra mim
-Denunciei bullying
-Mas nada mudou, parece que tudo piorou
-
-[Ponte - Henriz]
-Eu estou sendo obrigado a mudar
-A minha personalidade eu vou deixar pra lá
-
-[Refrão - Henriz]
-Eu não tenho o que fazer
-Eu vou ter que me adaptar
-Eu não tenho o que fazer
-Eu vou ter que me adaptar
-
-[Verso 6 - Henriz]
-Final de 2022
-Minha vida começou a melhorar
-Só que muita insegurança começou a brotar
-Insegurança com meu corpo
-E com o meu jeito de falar
-
-[Verso 7 - Henriz]
-Eu fiz novos amigos
-Mas eu não conseguia me amar
-E isso virou um problema
-Que começou a me prejudicar
-
-[Verso 8 - Henriz]
-Comecei a procurar uns fóruns sobre umas coisas ruins
-Aprendi muitas coisas ruins
-Tentei fazer muitas coisas ruins
-Mas eu melhorei, graças a Deus
-
-[Verso 9 - Henriz]
-Só que em todo o lugar, minha mente só pensava em adaptar
-
-[Refrão - Henriz]
-Eu não tenho o que fazer
-Eu vou ter que me adaptar
-Eu não tenho o que fazer
-Eu vou ter que me adaptar
-                    </div>
-                </details>
-
-                <details>
-                    <summary>08. CALA A SUA BOCA</summary>
-                    <div class="lyrics-content">
-[Verso 1 - Henriz]
-Filho de uma puta
-Deixa de ser idiota
-Tu é burro igual uma porta
-Da sua boca sai lorota
-
-[Verso 2 - Henriz]
-Você não tem resenha
-Você acha graça em xingar mulher
-Ninguém te acha engraçado
-Geral te acha um otário
-
-[Verso 3 - Henriz]
-Você não sabe andar sem ficar esbarrando
-Tu é muito desleixado
-Tu se acha valentão
-Mas geral ri da sua cara
-
-[Verso 4 - Henriz]
-Ninguém gosta de você
-E eu não estou nem forçando
-Quem diz que é seu amigo
-Por trás de você estão falando
-
-[Verso 5 - Henriz]
-Você chamava sua namorada de vagabunda
-Ela te deu um pé na bunda
-Você xinga professora
-Ainda por cima é a gente boa
-
-[Verso 6 - Henriz]
-Eu dizia ser seu amigo
-Mas você é insuportável
-Quando te confrontam você fica bem calado
-Seu fiote do caralho
-
-[Verso 7 - Gebriel]
-Tem nego que é estranho
-Tem nego que é esquisito
-Se passa por amigo
-Mas no fim é falsidade, estão na maldade
-Basta oportunidade vão cuspir na tua face
-
-[Verso 8 - Gebriel]
-Um grande pé de alface
-Um puta de um covarde
-Só fala pelas costas
-Porque não tem bolas
-
-[Verso 9 - Gebriel]
-Então rala
-Vai embora
-Já está muito tarde
-Pra você pedir desculpa
-
-[Verso 10 - Gebriel]
-Não costumo ser rude
-Mas quem vê se ilude
-Nego pinta de bom moço
-E ainda engana os trouxas
-
-[Verso 11 - Gebriel]
-E esse verso vai pro outro:
-Embriaga o amigo
-E leva o menino
-Pra festa, tentam se aproveitar
-E em vez dele ajudar, só soube gargalhar
-
-[Verso 12 - Gebriel]
-O que é seu vai chegar
-Mitomaníaco insano
-Você quer se coroar
-O P. Diddy Branco
-
-[Verso 13 - Gebriel]
-Então voltem pro seu canto
-Minha paz é preciosa
-Paciência está curta
-Então não me procura
-
-[Refrão - Os Dois]
-Cala sua boca
-Cala sua boca
-Cala sua boca
-Cala sua boca
-Cala sua boca! (Ô, cala a sua boca, moleque chato do caralho!)
-                    </div>
-                </details>
-
-                <details>
-                    <summary>09. Sumir</summary>
-                    <div class="lyrics-content">
-[Verso 1 - Gebriel]
-Quero sair daqui
-Quero desistir (Por que que a vida é tão difícil?)
-(Por que que tudo é tão difícil?)
-(Por que amar é tão difícil?)
-(Por que odiar é tão difícil?)
-(Por que o sucesso é tão difícil?)
-(E o fracasso é tão doído?)
-(Eu me sinto invisível)
-(No fim nada tem sentido)
-Quero sumir daqui (Por que eu corro atrás disso?)
-(Por que que tudo é tão difícil?)
-(Por que que a vida é tão difícil?)
-(Por que amar é tão difícil?)
-(Por que odiar é tão difícil?)
-(E o fracasso é tão doído?)
-(Eu me sinto invisí-)
-                    </div>
-                </details>
-
-                <details>
-                    <summary>10. NA MINHA MENTE!</summary>
-                    <div class="lyrics-content">
-[Verso 1 - Henriz]
-Você ainda está na minha mente
-Mas tenho que superar, não vai ter jeito
-Eu estou tentando melhorar pra essa gente
-Mas não está funcionando, não está tendo efeito
-
-[Ponte - Henriz]
-Não vai ter jeito
-Estão me obrigando a mudar
-Os meus "amigos"
-Estão a me abandonar
-
-[Verso 2 - Henriz]
-É lentamente, mas eu tenho a certeza
-Que daqui um tempo
-Tudo isso vai passar
-Aahhh
-
-[Verso 3 - Henriz]
-Você ainda está na minha mente
-Mas tenho que superar, não vai ter jeito
-Tenho ciúme que eu tenho que abandonar
-Mas com você ainda quero conversar
-
-[Verso 4 - Henriz]
-Mas não de um jeito que a gente possa voltar
-Nossa amizade, eu não quero estragar
-Aah
-
-[Verso 5 - Henriz]
-Na verdade sou eu o desesperado
-Só que não quero que eu pareça o errado
-Minha vida não está boa recentemente
-Estou sendo deixado de lado por muita gente
-
-[Verso 6 - Henriz]
-Não é que eu não entenda
-Ciclos vão acabar
-Mas isso foi tão do nada
-Que me fez duvidar
-
-[Verso 7 - Henriz]
-Se tem algo lá em cima
-Para poder me abraçar
-Mas o amor real
-É só acreditar
-
-[Verso 8 - Henriz]
-Senhor, me dê um sinal
-Eu sei que eu acredito
-Não quero desistir
-Por isso eu não minto
-
-[Verso 9 - Henriz]
-Eu sei que Você sabe que vou aguentar
-Mas duvido de mim mesmo
-Por não me amar
-
-[Refrão - Henriz]
-Você ainda está na minha mente
-Mas tenho que superar, não vai ter jeito
-Eu estou tentando melhorar pra essa gente
-Mas não está funcionando, não está tendo efeito
-
-[Verso 10 - Henriz]
-Eu sei que isso é bem errado
-Se eu me amasse eu tinha me afastado
-Estou sendo tratado de otário
-Mas é melhor do que ficar sozinho
-No outro lado
-
-[Verso 11 - Henriz]
-Essa música não é sobre romance
-É sobre amizade que talvez acabe
-Não seja tratado de otário
-Confronte seus problemas e você vai ficar bem
-Já quebrei a quarta parede
-Mas vamos voltar ao refrão, vai que você aprende
-
-[Refrão - Henriz]
-Você ainda está na minha mente
-Mas tenho que superar, não vai ter jeito
-Eu estou tentando melhorar pra essa gente
-Mas não está funcionando, não está tendo efeito
-
-[Verso 12 - Henriz]
-Não é que eu não entenda
-Ciclos vão acabar
-Mas isso foi tão do nada
-Que me fez duvidar
-
-[Verso 13 - Henriz]
-Se tem algo lá em cima
-Para poder me abraçar
-Mas o amor real
-É só acreditar
-
-[Verso 14 - Henriz]
-Senhor, me dê um sinal
-Eu sei que eu acredito
-Não quero desistir
-Por isso eu não minto
-
-[Outro - Henriz]
-Eu sei que Você sabe que vou aguentar
-Mas duvido de mim mesmo
-Por não me amar
-                    </div>
-                </details>
-
-                <details>
-                    <summary>11. INTERVALO</summary>
-                    <div class="lyrics-content">
-[Intro - Henriz]
-Narrador 1: Chegamos a um intervalo. Receita de Preparo da Nova Geração
-Narrador 2: Receita de Preparo da Nova Geração, pois é. O que você achou do álbum até agora?
-Narrador 1: Cara, em questão de produção está legal, mas tipo… São dois moleques reclamando de problema que vai passar daqui a pouco, sabe?
-Narrador 2: Então, eles têm que tocar algumas coisas mais felizes. Essas últimas músicas deixaram o clima mais pesado. Fases tinha muito mais músicas good vibes, sabe?
-
-[Interlúdio - Henriz]
-Ninguém se importa com os seus problemas
-Se você é adolescente, tudo vai passar
-Em partes, é verdade, mas eu não posso ter uma dificuldade agora?
-Ter minhas tristezas
-Eu reconheço que eu tenho que ficar triste
-Pode parecer meio vergonhoso, você pode estar sentindo vergonha alheia ouvindo isso
-Mas é a verdade e você tem que aprender a reconhecer
-Se você acha que eu estou sendo fresco, o problema é seu
-
-[Verso - Henriz]
-Querem algo mais feliz? Vocês não sabem o que esperar
-Querem algo mais profundo? Vocês não sabem o que esperar
-A minha função aqui é só lhe agradar
-Eu fui feito para isso, sou somente um produto
-Sou entretenimento, sou independente
-Eu não tenho lucro, faço isso porque amo
-Mas às vezes me consome, cadê toda a recompensa por tudo isso aqui?
-Sacrifico muitos dias para somente meia hora
-Mas eu acho que essa é a indústria
-Eu não posso reclamar, essa foi a minha escolha, e com ela eu vou arcar
-                    </div>
-                </details>
-
-                <details>
-                    <summary>12. Noite</summary>
-                    <div class="lyrics-content">
-[Verso 1 - BRAMA VH$]
-É, traço trajetos, trajetórias
-Vivências tão lindas que viraram
-Grandes memórias
-Na mente daquela criança
-Que sempre chora
-Que largava o dever de casa
-Pra jogar bola
-
-Bolava uns planos
-Enquanto alguns bolavam uns finos
-Criava histórias
-Enquanto uns viam uns filmes
-Não sei o que eu perdi
-Mas eu sigo firme
-
-[Verso 2 - BRAMA VH$]
-Eu pretendo viver pra ver um som meu
-Tocar lá no cine
-Cinemática didática
-Quero um carro foda pra fugir das problemáticas
-Quero uma nave foda pra fugir pra outras galáxias
-E descobrir o que o universo reserva pra mim, yeah
-
-[Verso 3 - BRAMA VH$]
-Quero só duas filhas e uma mulher
-Talvez viver muito e morrer como um zé
-Tanto faz
-Eu só quero viver com um pouco de paz
-Ocasionalmente dar conforto aos meus pais
-
-[Refrão - BRAMA VH$]
-Oh, oh
-
-A noite me tonteou
-O céu só me olhou
-Ela só me ligou
-E a gente nunca mais se falou
-
-A noite me tonteou
-O céu só me olhou
-Ela só me ligou
-E eu não sei o que fazer
-
-[Verso 4 - BRAMA VH$]
-Traço desenhos, disso eu sei
-Na ponta da caneta desenhei todas que amei
-Na soma dos poemas escrevi todas que odiei
-E no final quero enganar a quem?
-A mim mesmo
-
-[Verso 5 - BRAMA VH$]
-Sei que meu problema é o tempo
-Não pela falta, mas sim por não saber gerenciar
-Eu sei que eu preciso mudar
-A falta de avanço pra eu estagnar
-E as ruínas
-
-[Verso 6 - BRAMA VH$]
-Nunca tive castelo
-Construirei meu próprio
-Meu microfone é meu martelo
-Meu estúdio é meu pódio
-
-Enquanto uns vencem com ódio
-Eu prefiro vencer sóbrio
-Eu prefiro vencer sóbrio
-Mas não vencer só
-
-[Verso 7 - BRAMA VH$]
-Já vi muitas mãe solo
-Tocando esse solo te levo a outro plano
-Mas não daqui
-Uma pergunta é, uma pergunta:
-Noite, por que que você me trata assim?
-
-[Refrão - BRAMA VH$]
-Oh, oh
-
-A noite me tonteou
-O céu só me olhou
-Ela só me ligou
-E a gente nunca mais se falou
-
-A noite me tonteou
-O céu só me olhou
-Ela só me ligou
-E eu não sei o que fazer
-                    </div>
-                </details>
-
-                <details>
-                    <summary>13. Sai de Perto!</summary>
-                    <div class="lyrics-content">
-[Verso 1 - Henriz]
-Tenho medo de ser amado de novo
-Tenho medo de expressar sentimento
-Sofrer lovebombing e me entregar
-Para alguém que não queria me amar
-
-Pra ser sincero, parte é culpa minha
-Eu me apaixono a primeira vista
-Mas quase sempre isso não é recíproco
-Eu tomo um fora e sigo sorrindo
-
-[Verso 2 - Henriz]
-Só que uma vez, eu achei alguém
-Eu acho que ela me amava também
-As vezes até que eu ficava confuso
-Com uma pessoa que finalmente me fez bem
-
-Porém tudo que a gente tinha acabou
-A minha vida eu vou tentar seguir
-Portas abertas vão aparecer
-Eu vou tentar entrar antes de escurecer
-
-[Verso 3 - Henriz]
-Depois dela tudo ficou mais difícil
-Eu tenho medo de não achar alguém
-Eu idealizei tanto a gente
-Que esqueci que tem mais gente também
-
-Sendo sincero eu não tô nem ligando
-Minha vida tá boa, tô aproveitando
-Mas e se eu não conseguir mais ninguém?
-E se você foi o meu melhor?
-
-[Verso 4 - Henriz]
-É algo muito paia de se pensar
-Minha auto estima tá em outro patamar
-Só que ela tá bem embaixo
-Ah, eu vou parar de reclamar
-
-[Refrão - Henriz]
-Vou procurar alguém
-Ah, eu vou procurar alguém
-Vou procurar alguém
-Ah, eu vou procurar alguém
-Que me faça bem
-Ah, eu vou procurar alguém
-Que me faça bem
-Ah, eu vou procurar alguém
-
-[Refrão - Henriz]
-Sai de perto!
-Sai de perto!
-Que eu tô com muito medo!
-De me entregar!
-De me entregar!
-E tudo ser passageiro!
-
-Sai de perto!
-Sai de perto!
-Que eu tô com muito medo!
-De me entregar!
-De me entregar!
-E tudo ser passageiro!
-
-[Ponte - Henriz]
-Eu tenho que superar
-Só assim minha vida vai melhorar
-Só que vai demorar, então só me resta esperar
-
-Ah, ah, ah
-
-[Outro - Henriz]
-Para de me forçar a fazer coisas que eu não quero
-Eu não fui feito para seguir sistema
-Acho que eu vou fazer diferença
-Tanto na música, ou no cinema
-Ou qualquer área que eu seguir
-Eu sou artista, sou criativo
-Parem de me forçar a uma vida monótona
-Sonho em um dia morar com meus amigos
-Fazer música o dia inteiro, sair de casa para cantar em algum festival
-Ter minha independência e ser feliz com minha vida
-                    </div>
-                </details>
-
-                <details>
-                    <summary>14. Independência</summary>
-                    <div class="lyrics-content">
-[Verso 1]
-Quando eu crescer
-Eu vou poder ser quem eu quiser
-Sem ninguém atrapalhar
-Sem ninguém julgar
-Eu vou aproveitar
-Para seguir meus sonhos
-E fazer o que eu quiser
-Vou ter responsabilidade
-E sozinho vou me cuidar
-
-[Verso 2]
-Eu vou seguir minha vida
-E sozinho eu vou morar
-Viver de música, de cinema
-Todos vão me admirar
-
-[Verso 3]
-Eu posso tudo
-Que está ao meu alcance
-Vou levar café pra ela antes de acordar
-Vou sair de carro e ir pra qualquer lugar
-
-[Verso 4]
-Vou deixar a luz acesa
-Mesmo sem saber por quê
-Só pra casa não parecer
-Tão vazia sem você
-
-[Verso 5]
-Eu vou cuidar do que é meu
-Mesmo sem saber cuidar
-Vou fingir que eu já cresci
-Pra não ter que voltar
-
-[Verso 6]
-Vou sair de casa sorrindo
-Com o medo no coração
-Vou dizer “fica tudo bem”
-Mesmo sem ter razão
-
-[Outro]
-Vou fechar a porta devagar
-Antes do escuro ganhar
-Eu vou viver uma vida longa
-E o dia vai voltar
-                    </div>
-                </details>
-
-                <details>
-                    <summary>15. Receita de Preparo da Nova Geração</summary>
-                    <div class="lyrics-content">
-[Introdução - Gebriel]
-Each and every year, it gets a little crazy down here
-You wouldn't believed what we've been through since the time that you leaved
-I hope you're proud
-I've made mistakes
-Please don't turn around
-
-[Refrão 1 - Henriz]
-Receita de Preparo da Nova Geração:
-Começamos no mundão
-Pobres sem instrução
-
-Geração cobaia
-Somos nativos digitais
-Não passamos de ativos pras grandes redes sociais
-
-[Verso 1 - Gebriel]
-O novo milênio fez o mundo maluco
-Tanta coisa nova
-O futuro é agora
-No seu PC, a rede de tudo
-A biblioteca de Babel
-N'algo menor que uma folha de papel
-
-Pouco mais de uma década atrás
-Isso surpreendia os nossos pais
-E hoje não consegue espantar ninguém mais
-E até dita o que cada um faz
-
-Sinto que isso tem me feito doente
-Cheio de ambição, mas tanta exposição
-Me faz duvidar qual caminho trilhar
-Se eu errar ou não errar
-A injustiça desse mundo vai me ferrar
-
-
-[Verso 2 - Henriz]
-O cenário musical está mudando
-Música de IA no Spotify tá dominando
-Um monte de gente ouvindo coisa sem alma
-Ficou fácil enriquecer quanto tem máquina rimando
-E os rico' aproveitando
-Mas aqui quem pensa demais é invisível
-Enquanto o hype é previsível
-Artista sem vivência faz sucesso repentino
-Fala de arma, fala de mina, mas nunca olhou pro espelho direito
-
-Eu vi gente vendendo a alma por engajamento
-E talento bom sumindo por falta de alcance
-Vejo a cena alternativa ser tratada com desdém
-Mas é lá que a arte ainda respira bem
-
-Eu não quero ser mártir, só quero ser ouvido
-Ver meu som mais sincero crescer pelo que é de fato
-Ver meu trampo sendo lembrado
-Mesmo sem contrato assinado
-
-A real é que o amor não paga o corre
-Mas é o que mantém a chama acesa
-Eu sei que o jogo é sujo, mas a minha fé é limpa
-E eu ainda quero mudar a empresa
-
-[Refrão 2 - Henriz]
-Receita de Preparo da Nova Geração:
-Começamos no mundão
-Pobres sem instrução
-
-Geração cobaia
-Somos nativos digitais
-Não passamos de ativos pras grandes redes sociais
-
-[Verso 3 - Henriz]
-Cresci achando que a internet era liberdade
-Mas hoje eu vejo que é só uma nova grade
-O preço do acesso é a tua atenção
-Cada clique vale mais que opinião
-
-Eles te vendem sonho em alta resolução
-Mas o sonho é deles, e tu é só divulgação
-Te dão voz pra te sentir ouvido
-Mas o microfone já vem com o som vendido
-
-As redes não ligam pra quem é sincero
-Ligam pra quem fala alto e gera dinheiro
-A arte virou métrica, virou capital
-E quem não performa, não é profissional
-
-Criador virou número, e número virou dono
-O público acha que te conhece, mas não te toma como humano
-Quer rotina, quer drama, quer queda e retorno
-Mas esquece que atrás da tela tem corpo e sono
-
-Falam “segue teu sonho”, mas tudo é controle
-A vitrine te abraça enquanto te engole
-Quem tenta ser real vira o estranho
-E quem copia o sistema é tratado como gênio
-
-Eu não odeio o jogo, só não quero jogar
-Quero ser ouvido sem precisar me vender pra entrar
-Talvez o preço da arte seja ser esquecido
-Mas é melhor isso do que ser bem pago e vazio
-
-[Final - Os dois]
-Don't let us forget what makes us human
-Chase your passion, do it with love
-What comes after
-You'll figure it out
-
-Receita de Preparo da Nova Geração:
-Começamos no mundão
-Pobres sem instrução
-
-Geração cobaia
-Somos nativos digitais
-Não passamos de ativos pras grandes redes sociais
-
-Receita de Preparo da Nova Geração:
-Começamos no mundão
-Pobres sem instrução
-
-Geração cobaia
-Somos nativos digitais
-Não passamos de ativos pras grandes redes sociais
-                    </div>
-                </details>
+            <div class="tracklist-clean">
+                <h4>Tracklist Oficial</h4>
+                <ol>
+                    <li>A Calmaria Antes da Tempestade</li>
+                    <li>A Tempestade</li>
+                    <li>Teseu</li>
+                    <li>Potencial</li>
+                    <li>Venceslau</li>
+                    <li>Família</li>
+                    <li>Adaptar</li>
+                    <li>CALA A SUA BOCA</li>
+                    <li>Sumir</li>
+                    <li>NA MINHA MENTE!</li>
+                    <li>INTERVALO</li>
+                    <li>Noite</li>
+                    <li>Sai de Perto!</li>
+                    <li>Independência</li>
+                    <li>Receita de Preparo da Nova Geração</li>
+                </ol>
             </div>
         </section>
 
-        <section class="album-card">
+        <section class="album-card fade-in">
             
             <div class="album-header-info">
                 <img src="https://i.imgur.com/hxCB5Tp.jpeg" alt="Capa Fases" class="album-cover">
                 <div class="album-text">
                     <span style="display: inline-block; background: var(--border-color); color: var(--text-muted); font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase;">Álbum Clássico</span>
                     <h3>Fases</h3>
-                    <p>Uma história narrativa sobre as fases de um relacionamento tóxico.</p>
-                    <a href="https://open.spotify.com/intl-pt/album/7h451YzDztyZjRjQj8badW?si=tsIQiTmBT9imYOaGLTJ0nA" target="_blank" class="btn-spotify" style="background: transparent; color: #fff; border: 1px solid #fff;">Ouça no Spotify</a>
+                    <p>Uma história narrativa densa e imersiva sobre os altos, baixos e as cicatrizes deixadas por um relacionamento tóxico.</p>
+                    <a href="https://open.spotify.com/intl-pt/album/7h451YzDztyZjRjQj8badW?si=tsIQiTmBT9imYOaGLTJ0nA" target="_blank" class="btn-spotify" style="background: transparent; color: #fff; border: 1px solid #fff; box-shadow: none;">Ouça no Spotify</a>
                 </div>
             </div>
 
-            <div class="tracklist">
-                <details>
-                    <summary>01. eros</summary>
-                    <div class="lyrics-content">
-[Intro: Narrador]
-Essa história é de amor
-Um amor não tão duradouro
-Eles aprenderam a lição
-E tudo isso começou com uma interação
-Aqui vai a explicação:
-
-[Verso: Henriz]
-É que no dia que eu te conheci
-O desespero me tomou
-E o nervosismo falou:
-Cê vai tentar e desistir
-Mesmo assim, eu insisti
-Que iria funcionar
-Que contigo finalmente ia dar
-Que o papo ia fluir
-
-[Verso: Henriz]
-O dia então chegou
-Não acreditei, você tava ali
-Pronta pra me ver
-E sem perceber
-Eu comecei a sorrir
-O meu coração tava disposto
-Em uma noite de Agosto
-O seu rosto no meu rosto
-Meu sentimento foi exposto
-
-[Verso: Henriz]
-E eu não pude esconder
-Então, a gente se beijou
-E a minha cabeça girou
-Tão rápido o tempo passou
-Só que na hora de ir embora
-Foi quando eu percebi
-O problema que ia ser
-
-[Pré-Refrão: Henriz]
-Eu olhando pra você
-Foi dificil esconder que
-(Baby preciso dizer que)
-
-[Refrão: Henriz & Gebriel]
-Que toda vez que você sai
-Meu sorriso se esvai
-Sinto que enlouqueci
-Eu não queria sair
-Minha roupa com seu cheiro
-Com você não sinto medo
-O seu rosto na minha mente
-Me traz saudade da gente
-
-[Verso: Gebriel]
-Fui atender e não era o meu amor
-Eu passo as horas esperando pra te ver
-É só você que me cura essa dor
-E sem você, eu não vou sobreviver
-
-[Pré-Refrão: Gebriel]
-(Baby preciso dizer que)
-
-[Refrão: Henriz & Gebriel]
-Que toda vez que você sai
-Meu sorriso se esvai
-Sinto que enlouqueci
-Eu não queria sair
-Minha roupa com seu cheiro
-Com você não sinto medo
-O seu rosto na minha mente
-Me traz saudade da gente
-                    </div>
-                </details>
-
-                <details>
-                    <summary>02. chance</summary>
-                    <div class="lyrics-content">
-[Intro: Crítica]
-Cara, não é possível
-Cês lançaram um álbum chamado RUÍDO e tão aí chorando de novo?
-Sempre o mesmo papo:
-O sensível, o famosinho que reclama da fama
-O que não pega ninguém e escreve música sobre isso…
-Tipo, quem vocês acham que são?
-Kendrick? BROCKHAMPTON?
-Isso aqui é Brasil, porra
-Cresce
-Sério, se botar isso aqui no carro vai passar vergonha
-Desliga antes que alguém ouça essa bosta
-Eu tô avisando
-
-[Verso: Henriz]
-Depois que eu te conquistei
-O desespero sussurou
-Confiança abalou
-Eu tentei e finalmente consegui
-Mesmo assim eu sinto medo
-De te perder logo em setembro
-Eu me acalmo quando lembro
-Daquilo que 'cê disse, da nossa promessa
-Que o amor ia durar
-Só que eu sou inseguro
-Eu tenho um pressentimento
-De que isso é mentira
-Mas acho que tô delirando
-Ansiedade me tomando
-Eu acho que eu já te amo
-Por favor não me abandona
-Eu amo quando cê me chama
-
-[Pré-Refrão: Henriz]
-Então por favor me dá uma chance
-Pra eu provar que a gente vai funcionar
-Eu faço tudo pra você me amar
-
-[Refrão: Henriz]
-Só você aparecer
-Que eu vou correndo pra onde você tá
-Eu peço pro cê não esquecer
-Que aqui é onde eu vou estar
-
-[Ponte: Henriz]
-No cinema, eu te vejo sem problema, ahn
-Na escola, bagunça meu sistema, ahn
-Às vezes eu fico sem palavras, ahn
-Fico pensando em ti na madrugada, ahn!
-Sempre fico ansioso na hora de te ver
-Será que vou estragar? Será que vai funcionar?
-Às vezes na minha mente, tento me calar
-Mas no fundo eu sei, cê vai me confortar
-
-[Verso: Henriz]
-Não sei se reparou, mas cê me faz sorrir
-Até em dia ruim, você me faz existir
-Na escola, eu espero pra poder te encontrar
-Aguento as aulas chatas pra poder te abraçar
-Eu prometo por tudo
-Que eu não vou te abandonar
-Mas a sua parte cê tem que realizar
-Só assim a gente vai prosperar
-Por você eu posso até mudar
-Qualquer coisa que te incomodar
-É só você me falar
-Que aquilo para na hora
-Por favor, me namora
-Tudo acontece agora
-A gente tá na juventude
-Então por favor me ajude
-A virar uma pessoa melhor
-
-[Outro: Henriz]
-Bora virar algo maior
-Que só amigos, então
-Por isso que eu te digo:
-Me dá uma chance
-(Me dá uma chance)
-(Me dá uma chance)
-(Me dá uma chance)
-                    </div>
-                </details>
-
-                <details>
-                    <summary>03. futuro</summary>
-                    <div class="lyrics-content">
-[Sample: Quarteto em Cy]
-Sei um segredo
-Você tem medo, só pensa agora em voltar
-Não fala mais na bota e no anel de Zapata
-Tudo que você queria ser, sem medo
-
-[Verso: Henriz]
-Amor já faz um tempo
-De comprometimento
-Mesmo com problemas
-Não tenho um lamento
-
-[Verso: Henriz]
-E isso eu posso tolerar
-Pro nosso futuro brilhar
-Mesmo com nossas brigas
-Saiba que eu vou te amar
-
-[Pré-Refrão: Henriz]
-Só que as vezes você não se lembra mais de mim
-Você não quis deixar que eu falasse do futuro (sobre)
-Tudo que você podia ser, na estrada
-
-[Refrão: Henriz]
-Baby, eu to confiante
-De que o mundo vamos conquistar
-Baby, eu to confiante
-De que a gente vai casar, mas
-Baby, eu to hesitante
-De que voce não quer mais
-Baby, isso é preocupante
-Eu tô apegado demais
-
-[Verso: Gebriel]
-Maybe você
-Queira algo
-Que não posso oferecer
-
-[Verso: Gebriel]
-Baby, você
-Diga algo
-To perto de enlouquecer
-
-[Verso: Gebriel]
-Baby por que
-Não responde
-Hoje liguei pra você
-
-[Verso: Gebriel]
-Baby, silêncio
-É frustrante
-Será que eu sou intense demais?
-
-[Ponte: Henriz]
-Comunicar é importante
-Você, que é meu diamante
-Do nada ficou secreta
-Se tornou muito distante
-A verdade agora é incerta
-
-[Verso: Henriz]
-Seu silêncio me assombrou
-Insegurança se tornou
-Quando com ele tu dançou
-O telefone cê discou
-Vindo me avisar
-Que pra sempre ia me amar
-
-[Verso: Henriz]
-Eu quis acreditar
-Em ti confiar
-Eu te confrontei
-E você disse: it's just another day
-Que pra te amar
-Cegamente devo concordar
-
-[Outro: Narrador]
-Ela conheceu outra pessoa
-E cegamente, Ícaro acreditou que não era nada
-Ele ainda confiava nela
-Até que ela o contou uma mentira
-                    </div>
-                </details>
-
-                <details>
-                    <summary>04. sangue</summary>
-                    <div class="lyrics-content">
-[Verso: Henriz]
-Me diz quem é ele
-Fala quem é ele
-O que que cê vê nele
-O que que ele tem que eu não dei?
-
-[Verso: Henriz]
-Toda vez que você sai e não me fala
-O meu coração já vai e prepara a navalha
-E se eu trombo com esse filho da puta
-Boto a mão no bolso e tiro a faca
-Ele bota a mão na consciência
-Fala “não me mata”
-Eu todo maluco
-Consumido pela raiva
-Ele vai ser um homem morto na balada
-
-[Gancho: Henriz]
-Você vai dançar com ele?
-(I killed him)
-Cê vai me trocar por ele?
-(I killed him)
-Você vai me abandonar?
-(I killed him)
-Quando isso vai parar?
-(I killed him)
-
-[Verso: Henriz]
-Eu tenho várias perguntas
-De quem que cê gosta mais?
-Do otário enrolado
-Ou de quem te ama mais?
-Dependendo da resposta
-Vai cair sangue no chão
-Desse filho de uma puta
-Que se acha o machão
-
-[Outro: Henriz]
-E eu tô falando sério
-Não vou ter piedade, não
-Esse cara é um bosta
-Eu não gosto dele, não
-Então, por isso
-(I killed him)
-                    </div>
-                </details>
-
-                <details>
-                    <summary>05. mentira!</summary>
-                    <div class="lyrics-content">
-[Verso: Henriz]
-Eu sempre me importei com você
-Eu sempre esperava pra te ver
-Eu sempre me esforcei por você
-Acho que num era pra acontecer
-Porque
-Você dizia que me amava
-Mas nunca tava quando eu precisava
-Você dizia que era tudo nosso
-Mas sumia sempre que eu tava mal
-
-[Refrão: Henriz]
-Mentira, mentira, mentira
-Você me jurou que era para sempre, yeah
-
-[Verso: Henriz]
-Eu te via evitar o assunto
-E eu fingia que não era nada
-Teu sorriso parecia assunto
-Mas ele sumia do nada
-Eu tentei me enganar que era fase
-Eu tentei ignorar teu desinteresse
-Cê dizia que era só cansaço
-Mas sumia sempre que eu tava um troço, ahn
-
-[Ponte: Henriz]
-Mentira, pera!
-Eu tentei ligar, eu tentei sumir
-Eu me vi em você, eu me vi mentir
-Eu falei que tava tudo bem quando cê tava nem aí
-Se você não me amava, pra que que tu foi mentir?
-Na minha roupa tem seu cheiro, lembra do primeiro encontro?
-Eu achei que tava pronto, numa noite de agosto
-Agora eu sinto desgosto, só de pensar em você
-Já faz eu querer morrer
-
-[Verso: Henriz]
-Mas talvez se nós tentar
-Dá até pra viver tudo de novo, quando chega o ano novo
-Eu vou tentar não lembrar do que a gente passou
-Eu não sei se vou aguentar ficar mais tempo sem você
-Eu não sei o que eu quero, você me faz tão mal, mas você me faz tão bem
-Cê tava sempre ocupada, e eu nem desconfiava
-Que tudo ia dar errado
-Eu preciso de atenção, um pouco de validação
-
-[Refrão: Henriz]
-Eu preciso de você
-Eu preciso de atenção, um pouco de validação
-Eu preciso de você
-Eu preciso de atenção, um pouco de validação
-                    </div>
-                </details>
-
-                <details>
-                    <summary>06. validação</summary>
-                    <div class="lyrics-content">
-[Refrão: Henriz]
-Eu não quero te perder
-Eu só quero ter você
-Yeah, eu não quero te perder
-Eu só quero ter você
-Yeah, eu não quero te esquecer
-Eu só quero ver você
-Yeah, por favor, me dá atenção
-Eu preciso de um pouco da sua validação
-
-[Verso: Henriz]
-Quando eu te vi naquela primeira vez
-Eu senti que tudo finalmente ia acabar bem
-Só que pelo jeito eu estava enganado
-Já que você tava falando com outro otário
-Foda é que eu sumo por um tempo e eu já sou trocado
-Outro pega o meu lugar e eu fico chateado
-Porque você disse que eu era seu amado
-A verdade é que eu não passei de um arromba-
-
-[Interlúdio]
-Telefone: Oi, é… então, acho que é melhor acabar por aqui
-Eu sempre faço tudo e isso não tá me fazendo muito feliz, sabe?
-Não é recíproco
-
-[Verso: Henriz]
-Agora eu sei que me perdi
-Tentando te fazer sorrir
-Yeah, eu me deixei pra depois
-Só pra te fazer feliz
-Yeah, eu tentei, mas não deu certo
-Você nunca tava por perto
-Eu ainda penso em te chamar
-Porque eu preciso de migalhas de afeto
-
-[Outro: Henriz]
-Mas se você quiser, dá pra gente tentar de novo!
-                    </div>
-                </details>
-
-                <details>
-                    <summary>07. farol</summary>
-                    <div class="lyrics-content">
-[Refrão: Henriz]
-Eu te liguei faz um tempo, você nem notou
-Eu tava esperando lá, e você nem brotou
-Até tentei disfarçar, mas não sou bom ator
-Perto dos outros é paz, sozinho eu tô em dor
-Minha cabeça girando, igual rua sem fim
-Cada farol que eu passo, me lembra de ti
-'Cê falou q era nós, mas nunca foi assim
-Eu fiquei aguardando, 'cê foi pra frente, enfim
-
-[Verso: Henriz]
-Eu só queria você nos meus sonhos
-Quero você falando o que a gente foi
-A gente foi algo rápido, ou que significou
-Alguma coisa pra ti, ou 'cê ignorou?
-
-[Ponte: Henriz]
-Não sei demonstrar carinho? É papo reto, verdade
-Mas por você eu até mudei a personalidade
-Tivemos algo real? Ou fruto da vaidade?
-O casal perfeito? Em qual realidade
-Eu ficaria sempre no vermelho por você
-Preso no trânsito cheio falando com você
-Eu ficaria feliz só por te ver vencer
-Eu fingi ficar bem só pra não te ver triste
-Mas quando é meu caso isso não existe
-Eu mudei toda a minha persona por você
-Se eu fiquei melhor? Isso eu nunca vou saber
-
-[Verso: Gebriel]
-Sem propósito, agora
-Até penso em morrer
-Me sinto idiota por sempre perceber
-E nunca aceitar
-Que já faz semanas que deixou de me amar
-Custei a entender
-Que a culpa é inteira minha
-Por sempre idealizar e os sinais ignorar
-
-[Ponte: Gebriel]
-Você foi perfeita na minha ilusão
-Quem eu me apaixonei nunca existiu
-Sabendo disso, em cada ação
-Você alimentou a minha emoção
-Por causa da sua carência o meu mundo ruiu
-Descobri que a minha felicidade nunca existiu
-
-[Refrão: Henriz & Gebriel]
-Eu te liguei faz um tempo, você nem notou
-Eu tava esperando lá, e você nem brotou
-Até tentei disfarçar, mas não sou bom ator
-Perto dos outros é paz, sozinho eu tô em dor
-Minha cabeça girando, igual rua sem fim
-Cada farol que eu passo, me lembra de ti
-'Cê falou q era nós, mas nunca foi assim
-Eu fiquei aguardando, 'cê foi pra frente, enfim
-                    </div>
-                </details>
-
-                <details>
-                    <summary>08. acabou</summary>
-                    <div class="lyrics-content">
-[Verso: Henriz]
-É, acabou
-Eu não sei o que eu vou fazer sem você
-É, acabou
-Eu não sei como continuar
-É, foi bem bom
-As memórias, na minha mente, vão ficar
-É, não foi pra ser
-Algum dia, nós vamos nos esbarrar
-É, deu pra ver
-Quando você parou de me amar
-É, vou sofrer
-Mas a vida está longe de acabar
-É, passou
-Mas eu ainda escuto tua voz
-É, faltou
-Mas cê sabe bem quem foi pior
-É, eu tentei
-Mas no fundo eu sabia que ia dar ruim
-É, me calei
-Tudo aquilo que eu devia ter dito pra tu
-É, eu nem vi
-Quando você parou de sorrir
-É, eu sumi
-Mas não foi pra te atingir
-É, me cansei
-De fingir que estava tudo bem
-É, eu voltei
-O problema: já tarde pra nós dois
-É, tô aqui
-Eu prometo que nunca mais vou sumir
-É, conversar
-Com alguém que cê não para de olhar, mas
-
-[Outro: Henriz]
-É, terminou
-Nossa história ao fim chegou
-É, esse som
-É um ruído que vai voltar ao princípio
-                    </div>
-                </details>
-
-                <details>
-                    <summary>09. (re)começo</summary>
-                    <div class="lyrics-content">
-[Intro: Gebriel]
-É, eu acho que acabou
-Por um tempo foi bom
-Mas depois mudou…
-O tempo passou
-E eu achei consolação
-Vivendo minha vida, amigos, bebida…
-Nunca mais quero sentir amor
-
-[Verso: Gebriel]
-Mais uma vez o mundo girou
-O tempo passou
-A tempestade enfim cessou
-O meu coração
-Já não sente dor
-Minha nova vida
-Agora tem cor
-Águas passadas agora estão longe
-Segui na estrada, vejo quão distante cheguei
-Por muito pensei
-Foi breve e eu não sei
-Aonde eu errei
-Eu te culpei
-Também me culpei
-E onde isso importa?
-O que importa é viver
-Eu te superei
-As portas fechei
-E então eu jurei
-(Nunca mais quero sentir amor)
-
-[Verso: Gebriel]
-O tempo passou
-Eu me ocupei
-Sem entender, a mágoa afoguei
-Eu fui bem feliz
-Busquei sorrir
-Me divertir
-Mas também trabalhar
-A vida não podia melhorar
-
-[Ponte: Gebriel]
-E então, eu a conheci
-Eu me apaixonei
-Ela também
-Nós nos demos bem
-A gente saiu
-Se divertiu
-A gente sorriu
-A gente ficou
-Ela era o amor da minha vida
-E eu o amor da vida dela
-No fundo, eu não me curei
-E um amor recíproco eu estraguei
-
-[Verso: Gebriel]
-Eu fui injusto
-Eu fui egoísta
-Pra mim, amor era sacrifício
-E eu não precisei
-E me acomodei
-Carinho, cuidado, atenção
-Eu nunca te dei
-Foi minha culpa, mas eu tinha medo
-De amar de novo
-Entregar meu tudo
-Me ferir de novo
-E então perder
-E perder meu mundo
-
-[Outro: Gebriel]
-Eu a fiz mal
-Eu não a vi
-Eu não a senti
-Eu não apoiei
-Nem apreciei
-Nunca fiz nada por ela
-Meu trauma me fez covarde
-Tive medo de me entregar e ela vazar
-Quando percebi o quão errado eu tava, já era tarde
-Eu a amava, da mesma forma que eu tinha minhas feridas
-Ela tinha as dela, por trágica coincidencia, meus atos apenas a faziam arder
-Não foi minha intenção, mas o mal se faz na omissão
-Se faz quando se para de tentar ser bom
-E até quem tem o coração mais puro, pode fazer queimar o mundo.
-
-Fim.
-                    </div>
-                </details>
+            <div class="tracklist-clean">
+                <h4>Tracklist Oficial</h4>
+                <ol>
+                    <li>eros</li>
+                    <li>chance</li>
+                    <li>futuro</li>
+                    <li>sangue</li>
+                    <li>mentira!</li>
+                    <li>validação</li>
+                    <li>farol</li>
+                    <li>acabou</li>
+                    <li>(re)começo</li>
+                </ol>
             </div>
         </section>
+
+        <footer class="fade-in">
+            <p>Copyright © 2026 DISCÍPULOS. Todos os direitos reservados.</p>
+        </footer>
 
     </main>
 </div>
 
-<footer>
-    <p>Copyright © 2026 DISCÍPULOS. Todos os direitos reservados.</p>
-</footer>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Seleciona todos os elementos que tem a classe 'fade-in'
+        const elements = document.querySelectorAll('.fade-in');
+
+        // Configura o observador da tela
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // Se o elemento aparecer na tela (rolagem), adiciona a classe 'visible'
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    // Opcional: Descomente a linha abaixo se quiser que a animação toque SÓ UMA VEZ
+                    // observer.unobserve(entry.target); 
+                }
+            });
+        }, {
+            threshold: 0.15 // Dispara a animação quando 15% do elemento estiver visível
+        });
+
+        // Manda observar cada um dos elementos
+        elements.forEach(el => observer.observe(el));
+    });
+</script>
 
 </body>
 </html>
