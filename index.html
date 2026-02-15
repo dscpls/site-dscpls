@@ -4,321 +4,318 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DISCÍPULOS // Official Site</title>
+    <link rel="icon" type="image/jpeg" href="https://i.imgur.com/0lwwt3N.jpeg">
     <style>
-        /* --- ESTÉTICA GERAL (Y2K / MYSPACE) --- */
+        /* --- ESTÉTICA MODERNA 2026 --- */
+        :root {
+            --bg-color: #0a0a0a;
+            --surface-color: #161616;
+            --primary-color: #ff5500;
+            --text-color: #f0f0f0;
+            --text-muted: #999999;
+            --border-color: rgba(255, 255, 255, 0.08);
+        }
+
         body {
-            background-color: #000000;
-            background-image: linear-gradient(0deg, transparent 24%, rgba(50, 205, 50, .3) 25%, rgba(50, 205, 50, .3) 26%, transparent 27%, transparent 74%, rgba(50, 205, 50, .3) 75%, rgba(50, 205, 50, .3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(50, 205, 50, .3) 25%, rgba(50, 205, 50, .3) 26%, transparent 27%, transparent 74%, rgba(50, 205, 50, .3) 75%, rgba(50, 205, 50, .3) 76%, transparent 77%, transparent);
-            background-size: 50px 50px;
-            color: #ccc;
-            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
-            padding: 20px;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* Container Principal */
         .container {
-            max-width: 960px;
+            max-width: 1100px;
             margin: 0 auto;
-            background-color: rgba(10, 10, 10, 0.95);
-            border: 3px ridge #444;
-            padding: 10px;
-        }
-
-        /* Links */
-        a { color: #ff6600; text-decoration: none; font-weight: bold; }
-        a:hover { background-color: #ff6600; color: #000; cursor: help; }
-
-        /* Header e Marquee */
-        header {
-            text-align: center;
-            border-bottom: 2px solid #ff6600;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-        }
-        h1 { color: #fff; text-transform: uppercase; letter-spacing: 5px; text-shadow: 2px 2px #ff6600; margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 15px;}
-        .marquee-box {
-            background: #ff6600;
-            color: #000;
-            font-weight: bold;
-            border: 1px solid #fff;
-        }
-
-        /* Layout de Colunas */
-        .layout-grid {
+            padding: 40px 20px;
             display: grid;
-            grid-template-columns: 250px 1fr;
-            gap: 20px;
+            grid-template-columns: 280px 1fr;
+            gap: 50px;
+            align-items: start;
         }
 
-        /* Coluna da Esquerda (Perfil) */
+        a { color: var(--primary-color); text-decoration: none; transition: color 0.2s ease; }
+        a:hover { color: #fff; }
+
+        /* --- BARRA LATERAL (FIXA NA TELA) --- */
         .sidebar {
-            text-align: center;
+            position: sticky;
+            top: 40px;
+            background: var(--surface-color);
+            border-radius: 20px;
+            padding: 24px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+
         .profile-pic {
             width: 100%;
-            height: 250px;
-            background-color: #000;
-            border: 2px solid #fff;
-            margin-bottom: 10px;
+            border-radius: 12px;
             overflow: hidden;
+            margin-bottom: 20px;
         }
         .profile-pic img {
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .info-box {
-            border: 1px solid #ff6600;
-            background: #000;
-            padding: 10px;
-            text-align: left;
-            font-size: 12px;
-            margin-bottom: 10px;
-        }
-        .info-title { background: #ff6600; color: #000; font-weight: bold; padding: 2px; margin-bottom: 5px; display: block; text-align: center; }
-
-        /* MENU DE NAVEGAÇÃO RETRÔ */
-        .menu-nav a {
+            height: auto;
             display: block;
-            background: #222;
-            color: #fff;
-            padding: 8px;
-            margin-bottom: 5px;
+            transition: transform 0.3s ease;
+        }
+        .profile-pic:hover img {
+            transform: scale(1.05);
+        }
+
+        .brand-title {
             text-align: center;
-            border: 1px solid #444;
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin: 0 0 5px 0;
+            color: #fff;
+        }
+
+        .brand-subtitle {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 24px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-        .menu-nav a:hover, .menu-nav a.ativo {
-            background: #ff6600;
+
+        /* Menu de Navegação */
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .nav-menu a {
+            display: block;
+            padding: 12px 16px;
+            border-radius: 10px;
+            color: var(--text-color);
+            background: rgba(255,255,255,0.03);
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        .nav-menu a:hover, .nav-menu a.ativo {
+            background: var(--primary-color);
+            color: #fff;
+            transform: translateX(4px);
+        }
+
+        /* Botões Especiais */
+        .btn-merch {
+            display: block;
+            text-align: center;
+            background: transparent;
+            color: #fff;
+            border: 1px solid var(--text-muted);
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+        .btn-merch:hover {
+            background: #fff;
             color: #000;
             border-color: #fff;
         }
 
-        /* Estilo da Loja / Merch & Botões */
-        .merch-box {
-            border: 2px dashed #00ffcc;
-            background: #111;
-            text-align: center;
-            padding: 15px;
-        }
-        .merch-title {
-            background: #00ffcc;
-            color: #000;
-            font-weight: bold;
-            padding: 2px;
-            display: block;
-            margin-bottom: 10px;
-            letter-spacing: 2px;
-        }
-        .merch-btn {
-            display: inline-block;
-            background: #ff6600;
-            color: #000;
-            padding: 10px 15px;
-            border: 2px solid #fff;
-            font-size: 14px;
-            text-transform: uppercase;
-            margin-top: 5px;
-            box-shadow: 2px 2px 0px #fff;
-            text-decoration: none !important;
-        }
-        .merch-btn:hover {
-            background: #fff;
-            color: #ff6600;
-            border-color: #ff6600;
-            box-shadow: 2px 2px 0px #ff6600;
-        }
-
-        /* Coluna da Direita (Conteúdo) */
-        .content { }
-        
-        .album-section {
-            border: 1px dashed #666;
-            padding: 15px;
-            margin-bottom: 30px;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        .album-header {
-            font-size: 18px;
-            color: #ff6600;
-            border-bottom: 1px solid #ff6600;
-            margin-bottom: 15px;
+        /* Listas na Sidebar */
+        .sidebar-section { margin-bottom: 20px; }
+        .sidebar-section h4 { 
+            font-size: 11px; 
+            color: var(--text-muted); 
+            text-transform: uppercase; 
+            letter-spacing: 1px; 
+            margin: 0 0 10px 0; 
+            border-bottom: 1px solid var(--border-color);
             padding-bottom: 5px;
-            font-weight: bold;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        }
+        .sidebar-section ul { list-style: none; padding: 0; margin: 0; font-size: 13px; }
+        .sidebar-section ul li { margin-bottom: 6px; color: #ccc; }
+        .sidebar-section ul li b { color: #fff; font-weight: 600; }
+
+        /* --- CONTEÚDO PRINCIPAL --- */
+        .header-main { margin-bottom: 40px; }
+        .header-main h2 { font-size: 32px; margin: 0 0 10px 0; font-weight: 800; letter-spacing: -1px; }
+        .header-main p { color: var(--text-muted); margin: 0; font-size: 16px; }
+
+        /* Estilo dos Álbuns */
+        .album-card {
+            background: var(--surface-color);
+            border-radius: 20px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid var(--border-color);
         }
 
-        /* Display da Capa do Álbum e Info */
-        .album-info-container {
+        .album-header-info {
             display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 30px;
+            align-items: center;
         }
+
         .album-cover {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
+            border-radius: 12px;
             object-fit: cover;
-            border: 2px solid #ff6600;
-            box-shadow: 3px 3px 0px #333;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
         }
-        .album-details {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+
+        .album-text h3 { margin: 0 0 10px 0; font-size: 24px; letter-spacing: -0.5px; }
+        .album-text p { color: var(--text-muted); font-size: 14px; margin: 0 0 15px 0; max-width: 400px; }
         
-        /* Acordeão de Letras */
+        .btn-spotify {
+            display: inline-block;
+            background: #1DB954;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: transform 0.2s ease, filter 0.2s ease;
+        }
+        .btn-spotify:hover { transform: scale(1.05); filter: brightness(1.1); color: #000; }
+
+        /* Acordeão de Letras Moderno */
+        .tracklist { margin-top: 20px; }
         details {
-            margin-bottom: 5px;
-            border: 1px solid #333;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            margin-bottom: 10px;
+            overflow: hidden;
+            transition: background 0.2s ease;
         }
+        details:hover { background: rgba(255,255,255,0.05); }
+        
         summary {
-            background: #222;
-            color: #fff;
-            padding: 8px;
+            padding: 16px 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-weight: 500;
+            font-size: 15px;
             list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        summary:hover { background: #333; color: #ff6600; }
-        summary::after { content: "+"; float: right; font-weight: bold; }
-        details[open] summary::after { content: "-"; }
+        summary::-webkit-details-marker { display: none; }
+        summary::after {
+            content: "+";
+            color: var(--text-muted);
+            font-size: 20px;
+            transition: transform 0.3s ease;
+        }
+        details[open] summary::after { content: "−"; color: var(--primary-color); }
+        details[open] summary { border-bottom: 1px solid var(--border-color); color: var(--primary-color); }
         
         .lyrics-content {
-            padding: 15px;
-            background: #000;
-            font-size: 12px;
+            padding: 20px;
+            font-size: 14px;
             white-space: pre-wrap;
-            color: #aaa;
-            border-top: 1px solid #333;
-            line-height: 1.4;
+            color: var(--text-muted);
+            line-height: 1.8;
+            background: #0d0d0d;
         }
 
-        /* Rodapé e Contador */
         footer {
             text-align: center;
-            font-size: 11px;
-            margin-top: 20px;
-            padding-top: 15px;
-            border-top: 1px solid #333;
-            color: #666;
-        }
-        .hit-counter {
-            display: inline-block;
-            border: 2px solid #ff6600;
-            background: #000;
-            padding: 5px 10px;
-            margin-top: 10px;
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 14px;
-            font-weight: bold;
-            color: #00ffcc;
-            letter-spacing: 3px;
+            margin-top: 60px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 12px;
         }
 
-        .blink { animation: blinker 1s linear infinite; }
-        @keyframes blinker { 50% { opacity: 0; } }
-
-        /* Responsividade Básica */
-        @media (max-width: 700px) {
-            .layout-grid { grid-template-columns: 1fr; }
-            .album-info-container { flex-direction: column; align-items: center; text-align: center; }
-            h1 { font-size: 24px; }
+        /* Responsividade */
+        @media (max-width: 850px) {
+            .container { grid-template-columns: 1fr; padding: 20px; }
+            .sidebar { position: relative; top: 0; margin-bottom: 30px; }
+            .album-header-info { flex-direction: column; text-align: center; }
+            .album-text p { margin: 0 auto 15px auto; }
         }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <header>
-        <h1>
-            <img src="https://media.tenor.com/xO43vQc8mPEAAAAi/fire-pixel.gif" height="40" alt="Fogo">
-            DISCÍPULOS
-            <img src="https://media.tenor.com/xO43vQc8mPEAAAAi/fire-pixel.gif" height="40" alt="Fogo">
-        </h1>
+    
+    <aside class="sidebar">
         
-        <div class="marquee-box">
-            <marquee scrollamount="5">
-                +++ NOVO ÁLBUM "RECEITA DE PREPARO DA NOVA GERAÇÃO" JÁ DISPONÍVEL +++ O PROJETO "RUÍDO" FOI CANCELADO +++ BEM-VINDO AO SITE OFICIAL +++
-            </marquee>
+        <div class="profile-pic">
+            <img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos">
         </div>
-        <p style="font-size: 12px;">"Hip-Hop Alternativo // Hemisfério Sul"</p>
-    </header>
+        
+        <h1 class="brand-title">DISCÍPULOS</h1>
+        <div class="brand-subtitle">Hip-Hop Alternativo</div>
 
-    <div class="layout-grid">
-        <aside class="sidebar">
+        <nav class="nav-menu">
+            <a href="index.html" class="ativo">Discografia / Home</a>
+            <a href="banda.html">Conheça a Banda</a>
+            <a href="contato.html">Contato & Shows</a>
+        </nav>
+
+        <a href="https://www.dscpls.shop" target="_blank" class="btn-merch">Official Merch Store</a>
+
+        <div class="sidebar-section" style="margin-bottom: 25px;">
+            <iframe data-testid="embed-iframe" style="border-radius:12px; border:none;" src="https://open.spotify.com/embed/track/6QOGJbCNfoCbFSrNZPme5O?utm_source=generator" width="100%" height="152" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+        </div>
+
+        <div class="sidebar-section">
+            <h4>Integrantes</h4>
+            <ul>
+                <li><b>Henriz:</b> Vocal (MS)</li>
+                <li><b>Gebriel:</b> Vocal (SP)</li>
+                <li><b>BRAMA VH$:</b> Vocal/Visual (PA)</li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section">
+            <h4>Redes Oficiais</h4>
+            <ul>
+                <li><a href="https://open.spotify.com/intl-pt/artist/5C5ggWPG2OVPxwd6QDdp61?si=bff76443148f46e3" target="_blank">Spotify</a></li>
+                <li><a href="https://youtube.com/@ABandaDISCIPULOS" target="_blank">YouTube</a></li>
+                <li><a href="https://instagram.com/discipulosabanda" target="_blank">Instagram</a></li>
+            </ul>
+        </div>
+
+        <div class="sidebar-section" style="margin-bottom: 0;">
+            <h4>Contato / Booking</h4>
+            <a href="mailto:discipulosabanda@gmail.com" style="font-size: 13px; word-break: break-all;">discipulosabanda@gmail.com</a>
+        </div>
+    </aside>
+
+    <main class="content">
+        
+        <div class="header-main">
+            <h2>Discografia & Letras</h2>
+            <p>Explore as letras, projetos e lançamentos oficiais.</p>
+        </div>
+
+        <section class="album-card">
             
-            <div class="profile-pic">
-                <img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos">
-            </div>
-            
-            <p class="blink" style="color: #ff6600; font-weight: bold; margin-bottom: 20px;">ONLINE AGORA</p>
-
-            <div class="info-box menu-nav">
-                <span class="info-title">MENU PRINCIPAL</span>
-                <a href="index.html" class="ativo">🏠 Home / Discografia</a>
-                <a href="banda.html">💀 A Banda</a>
-                <a href="contato.html">✉️ Contato & Shows</a>
-                <a href="https://www.dscpls.shop" target="_blank">🛒 Loja Oficial</a>
-            </div>
-
-            <div class="info-box" style="padding: 5px; text-align: center;">
-                <span class="info-title" style="margin-bottom: 10px;">🎵 NOW PLAYING</span>
-                <iframe data-testid="embed-iframe" style="border-radius:12px; margin-bottom: 5px;" src="https://open.spotify.com/embed/track/6QOGJbCNfoCbFSrNZPme5O?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
-            </div>
-
-            <div class="info-box merch-box">
-                <span class="merch-title">✦ OFFICIAL MERCH ✦</span>
-                <p style="font-size: 11px; color: #ddd; margin-bottom: 10px;">Apoie a cena independente. Camisetas, CDs e itens exclusivos.</p>
-                <a href="https://www.dscpls.shop" target="_blank" class="merch-btn blink">ACESSAR LOJA</a>
-            </div>
-
-            <div class="info-box">
-                <span class="info-title">INTEGRANTES</span>
-                <ul style="padding-left: 20px; margin: 5px 0;">
-                    <li><b>Henriz:</b> Vocal (MS)</li>
-                    <li><b>Gebriel:</b> Vocal (SP)</li>
-                    <li><b>BRAMA VH$:</b> Vocal/Visual (PA)</li>
-                </ul>
-            </div>
-
-            <div class="info-box">
-                <span class="info-title">LINKS</span>
-                <a href="https://open.spotify.com/intl-pt/artist/5C5ggWPG2OVPxwd6QDdp61?si=bff76443148f46e3" target="_blank">💿 Spotify</a><br>
-                <a href="https://youtube.com/@ABandaDISCIPULOS" target="_blank">📺 YouTube</a><br>
-                <a href="https://instagram.com/discipulosabanda" target="_blank">📸 Instagram</a>
-            </div>
-
-            <div class="info-box" style="text-align: center; border-color: #00ffcc;">
-                <span class="info-title" style="background: #00ffcc; color: #000;">CONTATO / BOOKING</span>
-                <a href="mailto:discipulosabanda@gmail.com" style="word-break: break-all; font-size: 11px; color: #00ffcc;">✉️ discipulosabanda@gmail.com</a>
-            </div>
-        </aside>
-
-        <main class="content">
-            
-            <div class="album-section">
-                <div class="album-header">
-                    💿 RECEITA DE PREPARO DA NOVA GERAÇÃO (2026)
-                    <img src="https://media.tenor.com/aCwb46D197EAAAAi/new-pixel.gif" height="20" alt="Novo" class="blink">
+            <div class="album-header-info">
+                <img src="https://i.imgur.com/hirNm4K.jpeg" alt="Capa Receita de Preparo da Nova Geração" class="album-cover">
+                <div class="album-text">
+                    <span style="display: inline-block; background: var(--primary-color); color: #fff; font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase;">Lançamento (2026)</span>
+                    <h3>Receita de Preparo da Nova Geração</h3>
+                    <p>O projeto explora a experiência da Geração Z, impactos da pandemia, isolamento e a pressão digital.</p>
+                    <a href="https://open.spotify.com/intl-pt/album/5bAVtGW4hYrVpQ9ALYhPza?si=_Zym-HXrTd2xgfgn2jYGZQ" target="_blank" class="btn-spotify">Ouça no Spotify</a>
                 </div>
-                
-                <div class="album-info-container">
-                    <img src="https://i.imgur.com/hirNm4K.jpeg" alt="Capa Receita de Preparo da Nova Geração" class="album-cover">
-                    <div class="album-details">
-                        <p style="font-size: 12px; margin: 0; color: #ddd;">
-                            O projeto explora a experiência da Geração Z, impactos da pandemia, isolamento e a pressão digital.
-                        </p>
-                        <a href="https://open.spotify.com/intl-pt/album/5bAVtGW4hYrVpQ9ALYhPza?si=_Zym-HXrTd2xgfgn2jYGZQ" target="_blank" class="merch-btn" style="font-size: 11px; padding: 5px 10px; background-color: #1DB954; color: #000; border-color: #fff; width: fit-content;">▶ OUÇA NO SPOTIFY</a>
-                    </div>
-                </div>
+            </div>
 
+            <div class="tracklist">
                 <details>
                     <summary>01. A Calmaria Antes da Tempestade</summary>
                     <div class="lyrics-content">
@@ -1529,22 +1526,21 @@ Não passamos de ativos pras grandes redes sociais
                     </div>
                 </details>
             </div>
+        </section>
 
-            <div class="album-section">
-                <div class="album-header">
-                    💿 FASES (ÁLBUM ANTIGO)
+        <section class="album-card">
+            
+            <div class="album-header-info">
+                <img src="https://i.imgur.com/hxCB5Tp.jpeg" alt="Capa Fases" class="album-cover">
+                <div class="album-text">
+                    <span style="display: inline-block; background: var(--border-color); color: var(--text-muted); font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase;">Álbum Clássico</span>
+                    <h3>Fases</h3>
+                    <p>Uma história narrativa sobre as fases de um relacionamento tóxico.</p>
+                    <a href="https://open.spotify.com/intl-pt/album/7h451YzDztyZjRjQj8badW?si=tsIQiTmBT9imYOaGLTJ0nA" target="_blank" class="btn-spotify" style="background: transparent; color: #fff; border: 1px solid #fff;">Ouça no Spotify</a>
                 </div>
-                
-                <div class="album-info-container">
-                    <img src="https://i.imgur.com/hxCB5Tp.jpeg" alt="Capa Fases" class="album-cover">
-                    <div class="album-details">
-                        <p style="font-size: 12px; margin: 0; color: #ddd;">
-                            Uma história narrativa sobre as fases de um relacionamento tóxico.
-                        </p>
-                        <a href="https://open.spotify.com/intl-pt/album/7h451YzDztyZjRjQj8badW?si=tsIQiTmBT9imYOaGLTJ0nA" target="_blank" class="merch-btn" style="font-size: 11px; padding: 5px 10px; background-color: #1DB954; color: #000; border-color: #fff; width: fit-content;">▶ OUÇA NO SPOTIFY</a>
-                    </div>
-                </div>
+            </div>
 
+            <div class="tracklist">
                 <details>
                     <summary>01. eros</summary>
                     <div class="lyrics-content">
@@ -2145,25 +2141,14 @@ Fim.
                     </div>
                 </details>
             </div>
+        </section>
 
-            <p style="text-align: center; color: #ff6600; font-weight: bold; padding: 20px; border: 1px dashed #ff6600;">
-                "Lembre-se de que a vida, a vida é uma só!<br>
-                Se você não encontrar razões para ser livre, invente-as<br>
-                Seja criativo!"
-            </p>
-
-        </main>
-    </div>
-
-    <footer>
-        <p>Copyright © 2026 DISCÍPULOS. Todos os direitos reservados.<br>
-        Powered by Henriz, Gebriel & BRAMA VH$</p>
-        
-        <div class="hit-counter" title="Total de visitas no site">
-            VISITANTES: 0 0 1 3 3 7
-        </div>
-    </footer>
+    </main>
 </div>
+
+<footer>
+    <p>Copyright © 2026 DISCÍPULOS. Todos os direitos reservados.</p>
+</footer>
 
 </body>
 </html>
