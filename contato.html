@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DISCÍPULOS // Conheça a Banda</title>
+    <title>DISCÍPULOS // Contato & Agenda</title>
     <style>
         /* --- ESTÉTICA GERAL (Y2K / MYSPACE) --- */
         body {
@@ -22,7 +22,7 @@
 
         header { text-align: center; border-bottom: 2px solid #ff6600; margin-bottom: 20px; padding-bottom: 10px; }
         h1 { color: #fff; text-transform: uppercase; letter-spacing: 5px; text-shadow: 2px 2px #ff6600; margin: 10px 0; }
-        h2 { color: #00ffcc; border-bottom: 1px dashed #00ffcc; padding-bottom: 5px;}
+        h2 { color: #00ffcc; border-bottom: 1px dashed #00ffcc; padding-bottom: 5px; margin-top: 30px;}
         
         .layout-grid { display: grid; grid-template-columns: 250px 1fr; gap: 20px; }
         
@@ -43,18 +43,26 @@
         .merch-btn { display: inline-block; background: #ff6600; color: #000; padding: 10px 15px; border: 2px solid #fff; font-size: 14px; text-transform: uppercase; margin-top: 5px; box-shadow: 2px 2px 0px #fff; text-decoration: none !important; }
         .merch-btn:hover { background: #fff; color: #ff6600; border-color: #ff6600; box-shadow: 2px 2px 0px #ff6600; }
 
-        /* Estilo das Bios */
-        .member-card { display: flex; gap: 15px; background: rgba(255, 255, 255, 0.05); border: 1px dashed #666; padding: 15px; margin-bottom: 20px; }
-        .member-pic { width: 120px; height: 120px; background: #333; border: 2px solid #ff6600; display: flex; align-items: center; justify-content: center; font-size: 10px; }
-        .member-bio h3 { margin: 0 0 10px 0; color: #ff6600; }
-        .member-bio p { font-size: 13px; line-height: 1.5; margin: 0; }
-        
+        /* Estilo do Formulário */
+        .form-group { margin-bottom: 15px; }
+        label { display: block; color: #ff6600; font-weight: bold; margin-bottom: 5px; font-size: 14px; }
+        input[type="text"], input[type="email"], textarea { width: 100%; background: #222; border: 1px solid #666; color: #00ffcc; padding: 8px; font-family: 'Courier New', Courier, monospace; box-sizing: border-box; }
+        input:focus, textarea:focus { outline: none; border-color: #ff6600; background: #000; }
+        button.submit-btn { background: #ff6600; color: #000; border: 2px solid #fff; padding: 10px 20px; font-weight: bold; font-family: 'Courier New', Courier, monospace; cursor: pointer; text-transform: uppercase; }
+        button.submit-btn:hover { background: #fff; color: #ff6600; border-color: #ff6600; }
+
+        /* Estilo da Agenda */
+        table.agenda { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 14px; }
+        table.agenda th { background: #333; color: #ff6600; padding: 8px; text-align: left; border: 1px solid #555; }
+        table.agenda td { background: #111; padding: 8px; border: 1px solid #555; }
+        table.agenda tr:hover td { background: #222; color: #fff; }
+
         .blink { animation: blinker 1s linear infinite; }
         @keyframes blinker { 50% { opacity: 0; } }
         
-        footer { text-align: center; font-size: 11px; margin-top: 20px; padding-top: 15px; border-top: 1px solid #333; }
+        footer { text-align: center; font-size: 11px; margin-top: 20px; padding-top: 15px; border-top: 1px solid #333; color: #666; }
         
-        @media (max-width: 700px) { .layout-grid { grid-template-columns: 1fr; } .member-card { flex-direction: column; align-items: center; text-align: center; } }
+        @media (max-width: 700px) { .layout-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -62,7 +70,7 @@
 <div class="container">
     <header>
         <h1>DISCÍPULOS</h1>
-        <p style="font-size: 12px; color: #ff6600;" class="blink">/// CONHEÇA A BANDA ///</p>
+        <p style="font-size: 12px; color: #ff6600;" class="blink">/// CONTATO & AGENDA ///</p>
     </header>
 
     <div class="layout-grid">
@@ -75,8 +83,8 @@
             <div class="info-box menu-nav">
                 <span class="info-title">MENU PRINCIPAL</span>
                 <a href="index.html">🏠 Home / Discografia</a>
-                <a href="banda.html" class="ativo">💀 A Banda</a>
-                <a href="contato.html">✉️ Contato & Shows</a>
+                <a href="banda.html">💀 A Banda</a>
+                <a href="contato.html" class="ativo">✉️ Contato & Shows</a>
                 <a href="https://www.dscpls.shop" target="_blank">🛒 Loja Oficial</a>
             </div>
 
@@ -105,42 +113,61 @@
         </aside>
 
         <main class="content">
-            <h2>QUEM SOMOS NÓS?</h2>
-            <p style="font-size: 14px; line-height: 1.6;">A <b>DISCÍPULOS</b> não é só uma banda, é um coletivo. Formada por integrantes de diferentes regiões do Brasil, de São Paulo ao Pará e Mato Grosso do Sul, o grupo nasceu da necessidade de colocar para fora os ruídos de uma geração. Fazemos hip-hop alternativo misturado com indie, ansiedade e muita vontade de criar algo real.</p>
             
-            <br>
+            <h2>AGENDA DE SHOWS 2026</h2>
+            <p style="font-size: 13px;">Confira onde o ruído vai acontecer nos próximos meses. (Em breve mais datas)</p>
             
-            <div class="member-card">
-                <div class="member-pic">[ FOTO HENRIZ ]</div>
-                <div class="member-bio">
-                    <h3>Henriz (Vocal)</h3>
-                    <p>Direto de Campo Grande (MS), aos 16 anos Henriz é uma das vozes e mentes criativas do projeto. Com influências que vão desde o som cru do BROCKHAMPTON e Dominic Fike até a paixão por cinema e produção audiovisual, ele começou gravando vídeos para a internet antes de encontrar na música o seu verdadeiro megafone. Suas letras batem de frente com a insegurança juvenil e a pressão do futuro.</p>
-                </div>
-            </div>
+            <table class="agenda">
+                <tr>
+                    <th>DATA</th>
+                    <th>LOCAL / CIDADE</th>
+                    <th>STATUS</th>
+                </tr>
+                <tr>
+                    <td>[ A DEFINIR ]</td>
+                    <td>Campo Grande, MS</td>
+                    <td style="color: #00ffcc;">Planejando...</td>
+                </tr>
+                <tr>
+                    <td>[ A DEFINIR ]</td>
+                    <td>São Paulo, SP</td>
+                    <td style="color: #00ffcc;">Planejando...</td>
+                </tr>
+                <tr>
+                    <td>[ A DEFINIR ]</td>
+                    <td>Belém, PA</td>
+                    <td style="color: #00ffcc;">Planejando...</td>
+                </tr>
+            </table>
 
-            <div class="member-card">
-                <div class="member-pic">[ FOTO GEBRIEL ]</div>
-                <div class="member-bio">
-                    <h3>Gebriel (Vocal)</h3>
-                    <p>Representando São Paulo (SP), Gebriel traz o peso e o contraste para as faixas. Suas linhas costumam mergulhar nas profundezas do isolamento, saúde mental e nas decepções da vida moderna e dos relacionamentos. É a voz que equilibra o caos e a calmaria dentro das batidas.</p>
-                </div>
-            </div>
+            <h2>BOOKING & CONTATO</h2>
+            <p style="font-size: 13px;">Quer a <b>DISCÍPULOS</b> no seu festival ou evento? Manda um e-mail direto para <a href="mailto:discipulosabanda@gmail.com">discipulosabanda@gmail.com</a> ou use o mural abaixo. Também lemos mensagens de fãs!</p>
 
-            <div class="member-card">
-                <div class="member-pic">[ FOTO BRAMA VH$ ]</div>
-                <div class="member-bio">
-                    <h3>BRAMA VH$ (Vocal / Identidade Visual)</h3>
-                    <p>A força do Norte. Vindo do Pará, BRAMA atua tanto nos vocais quanto como a principal bússola visual do grupo. É ele quem ajuda a traduzir a sonoridade alternativa da DISCÍPULOS para o mundo estético, garantindo que o visual seja tão impactante quanto a mensagem.</p>
-                </div>
+            <div style="background: rgba(255, 255, 255, 0.05); padding: 20px; border: 1px dashed #666;">
+                <form action="mailto:discipulosabanda@gmail.com" method="POST" enctype="text/plain">
+                    <div class="form-group">
+                        <label for="nome">Nome / Apelido:</label>
+                        <input type="text" id="nome" name="Nome" placeholder="Como devemos te chamar?">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">E-mail (Para retorno):</label>
+                        <input type="email" id="email" name="Email" placeholder="seuemail@exemplo.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="assunto">Assunto:</label>
+                        <input type="text" id="assunto" name="Assunto" placeholder="Show, Feat, Merch, etc.">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem:</label>
+                        <textarea id="mensagem" name="Mensagem" rows="5" placeholder="Escreve aí..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="submit-btn">ENVIAR MENSAGEM</button>
+                </form>
             </div>
-
-            <h2>OS ARQUITETOS DO SOM (PRODS)</h2>
-            <p style="font-size: 14px; line-height: 1.6;">Nenhuma letra se sustenta sem a base certa. Nossas produções ganham vida pelas mãos de:</p>
-            <ul style="font-size: 14px; color: #ddd; list-style-type: square;">
-                <li><b>Bru Sant</b> (São Paulo - SP)</li>
-                <li><b>diogocaster</b> (Piauí - PI)</li>
-                <li><b>Deps</b> (Paraná - PR)</li>
-            </ul>
 
         </main>
     </div>
