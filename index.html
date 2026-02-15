@@ -34,8 +34,9 @@
             text-align: center;
             border-bottom: 2px solid #ff6600;
             margin-bottom: 20px;
+            padding-bottom: 10px;
         }
-        h1 { color: #fff; text-transform: uppercase; letter-spacing: 5px; text-shadow: 2px 2px #ff6600; margin: 10px 0; }
+        h1 { color: #fff; text-transform: uppercase; letter-spacing: 5px; text-shadow: 2px 2px #ff6600; margin: 10px 0; display: flex; align-items: center; justify-content: center; gap: 15px;}
         .marquee-box {
             background: #ff6600;
             color: #000;
@@ -57,14 +58,17 @@
         .profile-pic {
             width: 100%;
             height: 250px;
-            background-color: #222;
+            background-color: #000;
             border: 2px solid #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #555;
             margin-bottom: 10px;
+            overflow: hidden;
         }
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
         .info-box {
             border: 1px solid #ff6600;
             background: #000;
@@ -144,6 +148,9 @@
             margin-bottom: 15px;
             padding-bottom: 5px;
             font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         /* Display da Capa do Álbum e Info */
@@ -222,6 +229,7 @@
         @media (max-width: 700px) {
             .layout-grid { grid-template-columns: 1fr; }
             .album-info-container { flex-direction: column; align-items: center; text-align: center; }
+            h1 { font-size: 24px; }
         }
     </style>
 </head>
@@ -229,7 +237,12 @@
 
 <div class="container">
     <header>
-        <h1>DISCÍPULOS</h1>
+        <h1>
+            <img src="https://media.tenor.com/xO43vQc8mPEAAAAi/fire-pixel.gif" height="40" alt="Fogo">
+            DISCÍPULOS
+            <img src="https://media.tenor.com/xO43vQc8mPEAAAAi/fire-pixel.gif" height="40" alt="Fogo">
+        </h1>
+        
         <div class="marquee-box">
             <marquee scrollamount="5">
                 +++ NOVO ÁLBUM "RECEITA DE PREPARO DA NOVA GERAÇÃO" JÁ DISPONÍVEL +++ O PROJETO "RUÍDO" FOI CANCELADO +++ BEM-VINDO AO SITE OFICIAL +++
@@ -240,8 +253,9 @@
 
     <div class="layout-grid">
         <aside class="sidebar">
+            
             <div class="profile-pic">
-                [ FOTO DA BANDA ]
+                <img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos">
             </div>
             
             <p class="blink" style="color: #ff6600; font-weight: bold; margin-bottom: 20px;">ONLINE AGORA</p>
@@ -250,6 +264,7 @@
                 <span class="info-title">MENU PRINCIPAL</span>
                 <a href="index.html" class="ativo">🏠 Home / Discografia</a>
                 <a href="banda.html">💀 A Banda</a>
+                <a href="contato.html">✉️ Contato & Shows</a>
                 <a href="https://www.dscpls.shop" target="_blank">🛒 Loja Oficial</a>
             </div>
 
@@ -279,6 +294,11 @@
                 <a href="https://youtube.com/@ABandaDISCIPULOS" target="_blank">📺 YouTube</a><br>
                 <a href="https://instagram.com/discipulosabanda" target="_blank">📸 Instagram</a>
             </div>
+
+            <div class="info-box" style="text-align: center; border-color: #00ffcc;">
+                <span class="info-title" style="background: #00ffcc; color: #000;">CONTATO / BOOKING</span>
+                <a href="mailto:discipulosabanda@gmail.com" style="word-break: break-all; font-size: 11px; color: #00ffcc;">✉️ discipulosabanda@gmail.com</a>
+            </div>
         </aside>
 
         <main class="content">
@@ -286,6 +306,7 @@
             <div class="album-section">
                 <div class="album-header">
                     💿 RECEITA DE PREPARO DA NOVA GERAÇÃO (2026)
+                    <img src="https://media.tenor.com/aCwb46D197EAAAAi/new-pixel.gif" height="20" alt="Novo" class="blink">
                 </div>
                 
                 <div class="album-info-container">
