@@ -23,6 +23,18 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* IMPEDE A SELEÇÃO DE TODAS AS IMAGENS DO SITE */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         /* BACKGROUND PARALLAX */
         body::before {
             content: "";
@@ -110,7 +122,7 @@
         .content-card h3.section-title { margin: 0 0 20px 0; font-size: 24px; color: #fff; letter-spacing: -0.5px; }
         .content-card p.intro-text { color: var(--text-muted); font-size: 15px; margin-bottom: 30px; line-height: 1.8; }
 
-        /* Estilo dos Integrantes (Agora com botão do Insta) */
+        /* Estilo dos Integrantes */
         .member-item {
             display: flex;
             gap: 25px;
@@ -131,12 +143,8 @@
             filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.1));
             transition: all 0.3s ease;
         }
-        .member-insta-icon:hover {
-            transform: scale(1.1) translateY(-5px);
-        }
-        .member-insta-icon:hover img {
-            filter: drop-shadow(0 8px 20px rgba(255, 85, 0, 0.6));
-        }
+        .member-insta-icon:hover { transform: scale(1.1) translateY(-5px); }
+        .member-insta-icon:hover img { filter: drop-shadow(0 8px 20px rgba(255, 85, 0, 0.6)); }
 
         .member-info h4 { margin: 0 0 8px 0; font-size: 22px; color: var(--primary-color); letter-spacing: -0.5px; }
         .member-info p { margin: 0; font-size: 14px; color: #ddd; line-height: 1.6; }
@@ -167,14 +175,16 @@
 <div class="container">
     
     <aside class="sidebar fade-in">
-        <div class="profile-pic"><img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos"></div>
+        <div class="profile-pic">
+            <img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos" draggable="false">
+        </div>
         <h1 class="brand-title">DISCÍPULOS</h1>
         <div class="brand-subtitle">Hip-Hop Alternativo</div>
 
         <nav class="nav-menu">
-            <a href="index.html">Discografia / Home</a>
-            <a href="banda.html" class="ativo">Conheça a Banda</a>
-            <a href="contato.html">Contato & Shows</a>
+            <a href="/">Discografia / Home</a>
+            <a href="/banda" class="ativo">Conheça a Banda</a>
+            <a href="/contato">Contato & Shows</a>
         </nav>
 
         <a href="https://www.dscpls.shop" target="_blank" class="btn-merch">Official Merch Store</a>
@@ -211,7 +221,7 @@
             
             <div class="member-item">
                 <a href="https://instagram.com/gqnzaroli" target="_blank" class="member-insta-icon" title="Instagram do Henriz">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram Henriz">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram Henriz" draggable="false">
                 </a>
                 <div class="member-info">
                     <h4>Henriz</h4>
@@ -222,7 +232,7 @@
 
             <div class="member-item">
                 <a href="https://instagram.com/o.garibel" target="_blank" class="member-insta-icon" title="Instagram do Gebriel">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram Gebriel">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram Gebriel" draggable="false">
                 </a>
                 <div class="member-info">
                     <h4>Gebriel</h4>
@@ -233,7 +243,7 @@
 
             <div class="member-item">
                 <a href="https://instagram.com/brama.vhs" target="_blank" class="member-insta-icon" title="Instagram do BRAMA VH$">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram BRAMA VH$">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram BRAMA VH$" draggable="false">
                 </a>
                 <div class="member-info">
                     <h4>BRAMA VH$</h4>
@@ -248,10 +258,9 @@
             <p class="intro-text" style="margin-bottom: 20px;">Nenhuma letra se sustenta sem a base certa. Nossas produções ganham vida pelas mãos de:</p>
             
             <div class="prods-list">
-                
                 <div class="prod-card">
                     <a href="https://instagram.com/bruno_thxx" target="_blank" title="Instagram Bru Sant">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Insta" class="prod-insta-mini">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Insta" class="prod-insta-mini" draggable="false">
                         <span>Bru Sant</span>
                         <small>São Paulo, SP</small>
                     </a>
@@ -259,7 +268,7 @@
 
                 <div class="prod-card">
                     <a href="https://instagram.com/diogosmpo" target="_blank" title="Instagram diogocaster">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Insta" class="prod-insta-mini">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Insta" class="prod-insta-mini" draggable="false">
                         <span>diogocaster</span>
                         <small>Piauí, PI</small>
                     </a>
@@ -269,7 +278,6 @@
                     <span style="margin-top: 15px;">Deps</span>
                     <small>Paraná, PR</small>
                 </div>
-
             </div>
         </section>
 

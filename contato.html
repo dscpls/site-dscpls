@@ -23,6 +23,18 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* IMPEDE A SELEÇÃO DE TODAS AS IMAGENS DO SITE */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         /* BACKGROUND PARALLAX */
         body::before {
             content: "";
@@ -106,14 +118,16 @@
 <div class="container">
     
     <aside class="sidebar fade-in">
-        <div class="profile-pic"><img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos"></div>
+        <div class="profile-pic">
+            <img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos" draggable="false">
+        </div>
         <h1 class="brand-title">DISCÍPULOS</h1>
         <div class="brand-subtitle">Hip-Hop Alternativo</div>
 
         <nav class="nav-menu">
-            <a href="index.html">Discografia / Home</a>
-            <a href="banda.html">Conheça a Banda</a>
-            <a href="contato.html" class="ativo">Contato & Shows</a>
+            <a href="/">Discografia / Home</a>
+            <a href="/banda">Conheça a Banda</a>
+            <a href="/contato" class="ativo">Contato & Shows</a>
         </nav>
 
         <a href="https://www.dscpls.shop" target="_blank" class="btn-merch">Official Merch Store</a>
