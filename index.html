@@ -23,12 +23,23 @@
             -webkit-font-smoothing: antialiased;
         }
 
+        /* IMPEDE A SELEÇÃO DE TODAS AS IMAGENS DO SITE */
+        img {
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
         /* BACKGROUND PARALLAX */
         body::before {
             content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Imagem com um degradê escuro por cima para o texto dar leitura */
             background-image: linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0.9)), url('https://images3.alphacoders.com/919/thumb-1920-919075.jpg');
             background-attachment: fixed;
             background-size: cover;
@@ -66,7 +77,7 @@
             position: sticky;
             top: 40px;
             background: var(--glass-bg);
-            backdrop-filter: blur(12px); /* Efeito de vidro embaçado */
+            backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border-radius: 20px;
             padding: 24px;
@@ -149,7 +160,7 @@
         .tracklist-clean ol { margin: 0; padding-left: 20px; font-size: 14px; color: #ddd; }
         .tracklist-clean ol li { margin-bottom: 8px; border-bottom: 1px dashed rgba(255,255,255,0.05); padding-bottom: 5px; }
         .tracklist-clean ol li:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .tracklist-clean ol li span { float: right; color: var(--text-muted); font-size: 12px; } /* Para tempo da música, se quiser por depois */
+        .tracklist-clean ol li span { float: right; color: var(--text-muted); font-size: 12px; }
 
         footer { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 12px; }
 
@@ -169,7 +180,7 @@
     <aside class="sidebar fade-in">
         
         <div class="profile-pic">
-            <img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos">
+            <img src="https://i.imgur.com/0lwwt3N.jpeg" alt="Logo Discípulos" draggable="false">
         </div>
         
         <h1 class="brand-title">DISCÍPULOS</h1>
@@ -221,7 +232,7 @@
         <section class="album-card fade-in">
             
             <div class="album-header-info">
-                <img src="https://i.imgur.com/hirNm4K.jpeg" alt="Capa Receita de Preparo da Nova Geração" class="album-cover">
+                <img src="https://i.imgur.com/hirNm4K.jpeg" alt="Capa Receita de Preparo da Nova Geração" class="album-cover" draggable="false">
                 <div class="album-text">
                     <span style="display: inline-block; background: var(--primary-color); color: #fff; font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase;">Lançamento (2026)</span>
                     <h3>Receita de Preparo da Nova Geração</h3>
@@ -255,7 +266,7 @@
         <section class="album-card fade-in">
             
             <div class="album-header-info">
-                <img src="https://i.imgur.com/hxCB5Tp.jpeg" alt="Capa Fases" class="album-cover">
+                <img src="https://i.imgur.com/hxCB5Tp.jpeg" alt="Capa Fases" class="album-cover" draggable="false">
                 <div class="album-text">
                     <span style="display: inline-block; background: var(--border-color); color: var(--text-muted); font-size: 10px; font-weight: bold; padding: 3px 8px; border-radius: 4px; margin-bottom: 8px; text-transform: uppercase;">Álbum Clássico</span>
                     <h3>Fases</h3>
@@ -289,24 +300,16 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", () => {
-        // Seleciona todos os elementos que tem a classe 'fade-in'
         const elements = document.querySelectorAll('.fade-in');
-
-        // Configura o observador da tela
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                // Se o elemento aparecer na tela (rolagem), adiciona a classe 'visible'
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
-                    // Opcional: Descomente a linha abaixo se quiser que a animação toque SÓ UMA VEZ
-                    // observer.unobserve(entry.target); 
                 }
             });
         }, {
-            threshold: 0.15 // Dispara a animação quando 15% do elemento estiver visível
+            threshold: 0.15 
         });
-
-        // Manda observar cada um dos elementos
         elements.forEach(el => observer.observe(el));
     });
 </script>
