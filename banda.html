@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISCÍPULOS // Conheça a Banda</title>
+    <style>
+        /* A MESMA ESTÉTICA DO SITE PRINCIPAL */
+        body {
+            background-color: #000000;
+            background-image: linear-gradient(0deg, transparent 24%, rgba(50, 205, 50, .3) 25%, rgba(50, 205, 50, .3) 26%, transparent 27%, transparent 74%, rgba(50, 205, 50, .3) 75%, rgba(50, 205, 50, .3) 76%, transparent 77%, transparent), linear-gradient(90deg, transparent 24%, rgba(50, 205, 50, .3) 25%, rgba(50, 205, 50, .3) 26%, transparent 27%, transparent 74%, rgba(50, 205, 50, .3) 75%, rgba(50, 205, 50, .3) 76%, transparent 77%, transparent);
+            background-size: 50px 50px;
+            color: #ccc;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container { max-width: 960px; margin: 0 auto; background-color: rgba(10, 10, 10, 0.95); border: 3px ridge #444; padding: 10px; }
+        a { color: #ff6600; text-decoration: none; font-weight: bold; }
+        a:hover { background-color: #ff6600; color: #000; cursor: help; }
+
+        header { text-align: center; border-bottom: 2px solid #ff6600; margin-bottom: 20px; }
+        h1 { color: #fff; text-transform: uppercase; letter-spacing: 5px; text-shadow: 2px 2px #ff6600; margin: 10px 0; }
+        h2 { color: #00ffcc; border-bottom: 1px dashed #00ffcc; padding-bottom: 5px;}
+        
+        .layout-grid { display: grid; grid-template-columns: 250px 1fr; gap: 20px; }
+        
+        .sidebar { text-align: center; }
+        .info-box { border: 1px solid #ff6600; background: #000; padding: 10px; text-align: left; font-size: 12px; margin-bottom: 10px; }
+        .info-title { background: #ff6600; color: #000; font-weight: bold; padding: 2px; margin-bottom: 5px; display: block; text-align: center; }
+        
+        /* MENU DE NAVEGAÇÃO RETRÔ */
+        .menu-nav a {
+            display: block;
+            background: #222;
+            color: #fff;
+            padding: 8px;
+            margin-bottom: 5px;
+            text-align: center;
+            border: 1px solid #444;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .menu-nav a:hover, .menu-nav a.ativo {
+            background: #ff6600;
+            color: #000;
+            border-color: #fff;
+        }
+
+        /* Estilo das Bios */
+        .member-card {
+            display: flex;
+            gap: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px dashed #666;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        .member-pic {
+            width: 120px;
+            height: 120px;
+            background: #333;
+            border: 2px solid #ff6600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+        .member-bio h3 { margin: 0 0 10px 0; color: #ff6600; }
+        .member-bio p { font-size: 13px; line-height: 1.5; margin: 0; }
+        
+        .blink { animation: blinker 1s linear infinite; }
+        @keyframes blinker { 50% { opacity: 0; } }
+        
+        footer { text-align: center; font-size: 11px; margin-top: 20px; padding-top: 15px; border-top: 1px solid #333; }
+        
+        @media (max-width: 700px) {
+            .layout-grid { grid-template-columns: 1fr; }
+            .member-card { flex-direction: column; align-items: center; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>DISCÍPULOS</h1>
+        <p style="font-size: 12px; color: #ff6600;" class="blink">/// CONHEÇA A BANDA ///</p>
+    </header>
+
+    <div class="layout-grid">
+        <aside class="sidebar">
+            
+            <div class="info-box menu-nav">
+                <span class="info-title">MENU PRINCIPAL</span>
+                <a href="index.html">🏠 Home</a>
+                <a href="banda.html" class="ativo">💀 A Banda</a>
+                <a href="musicas.html">💿 Discografia / Letras</a>
+                <a href="https://www.dscpls.shop" target="_blank">🛒 Loja Oficial</a>
+            </div>
+
+            <div class="info-box" style="padding: 5px; text-align: center;">
+                <span class="info-title" style="margin-bottom: 10px;">🎵 NOW PLAYING</span>
+                <iframe data-testid="embed-iframe" style="border-radius:12px; margin-bottom: 5px;" src="https://open.spotify.com/embed/track/6QOGJbCNfoCbFSrNZPme5O?utm_source=generator" width="100%" height="152" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+            </div>
+
+            <div class="info-box">
+                <span class="info-title">LINKS</span>
+                <a href="https://open.spotify.com/intl-pt/artist/5C5ggWPG2OVPxwd6QDdp61?si=bff76443148f46e3" target="_blank">💿 Spotify</a><br>
+                <a href="https://youtube.com/@ABandaDISCIPULOS" target="_blank">📺 YouTube</a><br>
+                <a href="https://instagram.com/discipulosabanda" target="_blank">📸 Instagram</a>
+            </div>
+        </aside>
+
+        <main class="content">
+            <h2>QUEM SOMOS NÓS?</h2>
+            <p style="font-size: 14px; line-height: 1.6;">A <b>DISCÍPULOS</b> não é só uma banda, é um coletivo. Formada por integrantes de diferentes regiões do Brasil, de São Paulo ao Pará e Mato Grosso do Sul, o grupo nasceu da necessidade de colocar para fora os ruídos de uma geração. Fazemos hip-hop alternativo misturado com indie, ansiedade e muita vontade de criar algo real.</p>
+            
+            <br>
+            
+            <div class="member-card">
+                <div class="member-pic">[ FOTO HENRIZ ]</div>
+                <div class="member-bio">
+                    <h3>Henriz (Vocal)</h3>
+                    <p>Direto de Campo Grande (MS), aos 16 anos Henriz é uma das vozes e mentes criativas do projeto. Com influências que vão desde o som cru do BROCKHAMPTON e Dominic Fike até a paixão por cinema e produção audiovisual, ele começou gravando vídeos para a internet antes de encontrar na música o seu verdadeiro megafone. Suas letras batem de frente com a insegurança juvenil e a pressão do futuro.</p>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-pic">[ FOTO GEBRIEL ]</div>
+                <div class="member-bio">
+                    <h3>Gebriel (Vocal)</h3>
+                    <p>Representando São Paulo (SP), Gebriel traz o peso e o contraste para as faixas. Suas linhas costumam mergulhar nas profundezas do isolamento, saúde mental e nas decepções da vida moderna e dos relacionamentos. É a voz que equilibra o caos e a calmaria dentro das batidas.</p>
+                </div>
+            </div>
+
+            <div class="member-card">
+                <div class="member-pic">[ FOTO BRAMA VH$ ]</div>
+                <div class="member-bio">
+                    <h3>BRAMA VH$ (Vocal / Identidade Visual)</h3>
+                    <p>A força do Norte. Vindo do Pará, BRAMA atua tanto nos vocais quanto como a principal bússola visual do grupo. É ele quem ajuda a traduzir a sonoridade alternativa da DISCÍPULOS para o mundo estético, garantindo que o visual seja tão impactante quanto a mensagem.</p>
+                </div>
+            </div>
+
+            <h2>OS ARQUITETOS DO SOM (PRODS)</h2>
+            <p style="font-size: 14px; line-height: 1.6;">Nenhuma letra se sustenta sem a base certa. Nossas produções ganham vida pelas mãos de:</p>
+            <ul style="font-size: 14px; color: #ddd; list-style-type: square;">
+                <li><b>Bru Sant</b> (São Paulo - SP)</li>
+                <li><b>diogocaster</b> (Piauí - PI)</li>
+                <li><b>Deps</b> (Paraná - PR)</li>
+            </ul>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>Copyright © 2026 DISCÍPULOS. Todos os direitos reservados.</p>
+    </footer>
+</div>
+
+</body>
+</html>
