@@ -110,7 +110,7 @@
         .content-card h3.section-title { margin: 0 0 20px 0; font-size: 24px; color: #fff; letter-spacing: -0.5px; }
         .content-card p.intro-text { color: var(--text-muted); font-size: 15px; margin-bottom: 30px; line-height: 1.8; }
 
-        /* Estilo dos Integrantes */
+        /* Estilo dos Integrantes (Agora com botão do Insta) */
         .member-item {
             display: flex;
             gap: 25px;
@@ -121,21 +121,37 @@
         }
         .member-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         
-        .member-pic-placeholder {
-            width: 120px; height: 120px; border-radius: 50%; background: rgba(0,0,0,0.4);
-            display: flex; align-items: center; justify-content: center; font-size: 11px; color: var(--text-muted);
-            border: 2px solid rgba(255, 85, 0, 0.3); flex-shrink: 0; box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-            text-transform: uppercase; font-weight: bold; letter-spacing: 1px;
+        .member-insta-icon {
+            width: 80px; height: 80px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .member-insta-icon img {
+            width: 100%; height: 100%; object-fit: contain;
+            filter: drop-shadow(0 5px 15px rgba(255, 255, 255, 0.1));
+            transition: all 0.3s ease;
+        }
+        .member-insta-icon:hover {
+            transform: scale(1.1) translateY(-5px);
+        }
+        .member-insta-icon:hover img {
+            filter: drop-shadow(0 8px 20px rgba(255, 85, 0, 0.6));
         }
 
         .member-info h4 { margin: 0 0 8px 0; font-size: 22px; color: var(--primary-color); letter-spacing: -0.5px; }
         .member-info p { margin: 0; font-size: 14px; color: #ddd; line-height: 1.6; }
 
         /* Lista de Produtores */
-        .prods-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 20px; }
-        .prod-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; }
+        .prods-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px; margin-top: 20px; }
+        .prod-card { background: rgba(0,0,0,0.3); padding: 15px; border-radius: 12px; border: 1px solid var(--border-color); text-align: center; transition: background 0.3s ease; }
+        .prod-card:hover { background: rgba(255,255,255,0.05); }
+        .prod-card a { display: flex; flex-direction: column; align-items: center; justify-content: center; text-decoration: none; }
+        
+        .prod-insta-mini { width: 35px; height: 35px; margin-bottom: 10px; transition: transform 0.3s ease; }
+        .prod-card:hover .prod-insta-mini { transform: scale(1.15) rotate(5deg); }
+        
         .prod-card span { display: block; font-size: 16px; font-weight: bold; color: #fff; margin-bottom: 5px; }
-        .prod-card small { color: var(--primary-color); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .prod-card small { color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; }
 
         footer { text-align: center; margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border-color); color: var(--text-muted); font-size: 12px; }
 
@@ -194,7 +210,9 @@
             <p class="intro-text">A <b>DISCÍPULOS</b> não é só uma banda, é um coletivo. Formada por integrantes de diferentes regiões do Brasil, o grupo nasceu da necessidade de colocar para fora os ruídos de uma geração. Fazemos hip-hop alternativo misturado com indie, ansiedade e muita vontade de criar algo real.</p>
             
             <div class="member-item">
-                <div class="member-pic-placeholder">Foto Henriz</div>
+                <a href="https://instagram.com/gqnzaroli" target="_blank" class="member-insta-icon" title="Instagram do Henriz">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram Henriz">
+                </a>
                 <div class="member-info">
                     <h4>Henriz</h4>
                     <span style="color: var(--primary-color); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Vocal / Compositor • Campo Grande, MS</span>
@@ -203,7 +221,9 @@
             </div>
 
             <div class="member-item">
-                <div class="member-pic-placeholder">Foto Gebriel</div>
+                <a href="https://instagram.com/o.garibel" target="_blank" class="member-insta-icon" title="Instagram do Gebriel">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram Gebriel">
+                </a>
                 <div class="member-info">
                     <h4>Gebriel</h4>
                     <span style="color: var(--primary-color); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Vocal / Compositor • São Paulo, SP</span>
@@ -212,7 +232,9 @@
             </div>
 
             <div class="member-item">
-                <div class="member-pic-placeholder">Foto Brama</div>
+                <a href="https://instagram.com/brama.vhs" target="_blank" class="member-insta-icon" title="Instagram do BRAMA VH$">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Instagram BRAMA VH$">
+                </a>
                 <div class="member-info">
                     <h4>BRAMA VH$</h4>
                     <span style="color: var(--primary-color); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px;">Vocal / Identidade Visual • Pará, PA</span>
@@ -226,18 +248,28 @@
             <p class="intro-text" style="margin-bottom: 20px;">Nenhuma letra se sustenta sem a base certa. Nossas produções ganham vida pelas mãos de:</p>
             
             <div class="prods-list">
+                
                 <div class="prod-card">
-                    <span>Bru Sant</span>
-                    <small>São Paulo, SP</small>
+                    <a href="https://instagram.com/bruno_thxx" target="_blank" title="Instagram Bru Sant">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Insta" class="prod-insta-mini">
+                        <span>Bru Sant</span>
+                        <small>São Paulo, SP</small>
+                    </a>
                 </div>
+
                 <div class="prod-card">
-                    <span>diogocaster</span>
-                    <small>Piauí, PI</small>
+                    <a href="https://instagram.com/diogosmpo" target="_blank" title="Instagram diogocaster">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/960px-Instagram_logo_2022.svg.png" alt="Insta" class="prod-insta-mini">
+                        <span>diogocaster</span>
+                        <small>Piauí, PI</small>
+                    </a>
                 </div>
-                <div class="prod-card">
-                    <span>Deps</span>
+
+                <div class="prod-card" style="display: flex; flex-direction: column; align-items: center; justify-content: center; opacity: 0.8;">
+                    <span style="margin-top: 15px;">Deps</span>
                     <small>Paraná, PR</small>
                 </div>
+
             </div>
         </section>
 
